@@ -1,6 +1,6 @@
 # Monetize
 
-An app that allows users to track their spending and income, and provides a way to set their own budgets and savings goals.
+An app that allows users to track their spending and income, and provides a way to set their own budgets and savings goals. This is the frontend side of the app.
 
 ## Getting Started
 

@@ -2,6 +2,5 @@
   "compilerOptions": {},
   "extends": "expo/tsconfig.base",
   "types": ["node"],
-  "typeRoots": ["../node_modules/@types"],
-  "noEmit": false
+  "typeRoots": ["../node_modules/@types"]
 }
