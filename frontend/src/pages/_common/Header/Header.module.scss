@@ -1,0 +1,23 @@
+@use "../../../utils/global-variables" as global;
+
+.headingContainer {
+  padding: map-get(global.$paddingMargin, m) 0;
+}
+
+.heading {
+  font-size: map-get(global.$fontSizes, xl);
+  font-family: Lalezar, global.$fallbackFonts;
+  padding-bottom: map-get(global.$paddingMargin, xxs);
+  color: map-get(global.$lightPalette, white);
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.subheading {
+  font-size: map-get(global.$fontSizes, xs);
+  font-family: Palanquin, global.$fallbackFonts;
+  padding-bottom: map-get(global.$paddingMargin, xxs);
+  color: map-get(global.$lightPalette, white);
+  font-weight: bold;
+  margin: 0;
+}

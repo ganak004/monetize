@@ -1,0 +1,19 @@
+@use "../../utils/global-variables" as global;
+
+.main {
+  padding: map-get(global.$paddingMargin, xs);
+  height: 100%;
+}
+
+.backgroundLight {
+  background-color: map-get(global.$lightPalette, skyPurple);
+}
+
+.innerContainer {
+  padding: map-get(global.$paddingMargin, xs);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
