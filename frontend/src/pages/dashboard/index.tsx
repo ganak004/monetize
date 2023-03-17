@@ -1,6 +1,7 @@
-import { useContext, useEffect } from "react";
-import { ThemeContext } from "../../context";
-import styles from "./Dashboard.module.scss";
+import { useContext, useEffect } from 'react';
+
+import { ThemeContext } from '../../context';
+import styles from './Dashboard.module.scss';
 
 const Dashboard = () => {
   const { lightMode } = useContext(ThemeContext);

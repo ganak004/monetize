@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext } from 'react';
 
 interface ThemeType {
   lightMode: boolean;
@@ -7,6 +7,7 @@ interface ThemeType {
 
 const ThemeContext = createContext<ThemeType>({
   lightMode: true,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   setTheme: () => {},
 });
 

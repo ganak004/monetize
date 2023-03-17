@@ -1,13 +1,31 @@
-import { useContext, useEffect } from "react";
-import { ThemeContext } from "../../context";
-import Header from "../_common/Header";
-import Logo from "../_common/Logo";
-import ProgressBar from "./_common/ProgressBar";
-import Income from "./_income-expenditure/Income";
-import styles from "./Walkthrough.module.scss";
+import { useContext, useState } from 'react';
+
+import { ThemeContext } from '../../context';
+import Logo from '../_common/Logo';
+import ProgressBar from './_common/ProgressBar';
+import styles from './Walkthrough.module.scss';
+import { WalkthroughStep } from './WalkthroughStep';
 
 const Walkthrough = () => {
   const { lightMode } = useContext(ThemeContext);
+  const [currentStep, setCurrentStep] = useState(1);
+
+  const handleNextStep = () => {
+    setCurrentStep(currentStep > 3 ? 1 : currentStep + 1);
+  };
+
+  const handlePreviousStep = () => {
+    setCurrentStep(currentStep < 2 ? 1 : currentStep - 1);
+  };
+
+  const progressMap: {
+    [key: number]: number;
+  } = {
+    1: 25,
+    2: 50,
+    3: 75,
+    4: 95,
+  };
 
   return (
     <div
@@ -16,13 +34,13 @@ const Walkthrough = () => {
       }`}
     >
       <Logo color="light" />
-      <ProgressBar progress={25} />
+      <ProgressBar progress={progressMap[currentStep]} />
       <div className={styles.innerContainer}>
-        <Header
-          heading="Welcome!"
-          subheading="Let's find out a bit about you"
+        <WalkthroughStep
+          currentStep={currentStep}
+          handlePrev={handlePreviousStep}
+          handleNext={handleNextStep}
         />
-        <Income />
       </div>
     </div>
   );
