@@ -1,4 +1,4 @@
-@use "../../utils/global-variables" as global;
+@use '../../utils/global-variables' as global;
 
 .main {
   padding: map-get(global.$paddingMargin, xs);
@@ -14,6 +14,5 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
   text-align: center;
 }

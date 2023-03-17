@@ -1,0 +1,24 @@
+@use "../../../../utils/global-variables" as global;
+
+.question {
+  font-family: Palanquin, global.$fallbackFonts;
+  color: map-get(global.$lightPalette, white);
+  font-size: map-get(global.$fontSizes, s);
+}
+
+.walkthroughContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.nextButton,
+.prevButton {
+  border: none;
+  background: transparent;
+  color: map-get(global.$lightPalette, white);
+  font-size: map-get(global.$fontSizes, xs);
+}
+
+.form {
+  padding-bottom: map-get(global.$paddingMargin, m);
+}

@@ -3,7 +3,8 @@
     "next",
     "fbjs",
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": ["react", "simple-import-sort", "@typescript-eslint"],
