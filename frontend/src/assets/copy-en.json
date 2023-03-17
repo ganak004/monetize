@@ -1,0 +1,284 @@
+{
+  "overview": {
+    "slides": [
+      {
+        "heading": "Plan your savings",
+        "description": "This is the first step",
+        "image": "http://www.example.com/image1.png"
+      },
+      {
+        "heading": "Step 2",
+        "description": "This is the second step",
+        "image": "http://www.example.com/image2.png"
+      },
+      {
+        "heading": "Step 3",
+        "description": "This is the third step",
+        "image": "http://www.example.com/image3.png"
+      }
+    ]
+  },
+  "createAccount": {
+    "heading": "Create an account",
+    "subheading": "Sign up by filling in the form below",
+    "fields": [
+      {
+        "label": "First name",
+        "type": "text",
+        "name": "firstName"
+      },
+
+      {
+        "label": "Email",
+        "type": "email",
+        "name": "email"
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "name": "password"
+      },
+      {
+        "label": "Confirm password",
+        "type": "password",
+        "name": "confirmPassword"
+      }
+    ]
+  },
+  "login": {
+    "heading": "Login",
+    "subheading": "Welcome back!",
+    "fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "name": "email"
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "name": "password"
+      }
+    ]
+  },
+  "buttons": {
+    "signUp": "Sign up",
+    "login": "Log in",
+    "alreadyHaveAccount": "I already have an account",
+    "createAccount": "Create an account",
+    "next": "Next",
+    "finish": "Finish",
+    "save": "Save",
+    "cancel": "Cancel",
+    "letsSave": "Let's save!",
+    "dashboard": "I'm good, take me to the dashboard",
+    "yes": "Yes",
+    "no": "No",
+    "saveAndContinue": "Save and continue",
+    "viewAll": "View all",
+    "addAnother": "Add another"
+  },
+  "walkthrough": {
+    "income1": {
+      "heading": "Welcome!",
+      "subheading": "Let's find out a bit about you.",
+      "question": "What's your main source of income each month?",
+      "options": [
+        {
+          "label": "My salary",
+          "value": "My salary"
+        },
+        {
+          "label": "My pension",
+          "value": "My pension"
+        },
+        {
+          "label": "My investments",
+          "value": "My investments"
+        },
+        {
+          "label": "My benefits",
+          "value": "My benefits"
+        },
+        {
+          "label": "Other",
+          "value": "Other"
+        }
+      ],
+      "progress": 25
+    },
+    "income2": {
+      "heading": "Great start!",
+      "subheading": "Let's keep going.",
+      "question": "...and how much is it?",
+      "perMonth": "per month",
+      "progress": 50
+    },
+    "income3": {
+      "heading": "Almost there!",
+      "subheading": "Just a few more details...",
+      "question": "On what date do you get paid?",
+      "progress": 75
+    },
+    "expenses1": {
+      "heading": "Brilliant.",
+      "subheading": "Now, let's talk expenses.",
+      "question": "List your monthly expenses below. Tip: start with the most important ones, like rent or mortgage, and bills.",
+      "fields": {
+        "name": "Name",
+        "amount": "Amount",
+        "date": "Date",
+        "in": "In",
+        "out": "Out"
+      },
+      "progress": 98
+    },
+    "loaders": {
+      "calculating": "Calculating...",
+      "saving": "Saving...",
+      "loading": "Loading..."
+    },
+    "success": {
+      "headingPositive": "Great job!",
+      "headingNeutral": "Let's get you back on track.",
+      "headingNegative": "Let's turn this around",
+      "subheadingPositive": "You have £X left over each month!",
+      "subheadingNeutral": "It looks like you're breaking even each month. Let's see where we can make some adjustments and help you save some money.",
+      "subheadingNegative": "It looks like you're spending more than you're earning each month. Don't worry, we're here to help! Let's get you back on track.",
+      "description": "Want to make some plans to save?"
+    }
+  },
+  "savingsWalkthrough": {
+    "savings1": {
+      "question": "Do you have a savings goal in mind?"
+    },
+    "savings2": {
+      "question": "What are you saving for?",
+      "options": ["Holiday", "Car", "House", "Wedding", "Other"]
+    },
+    "savings3": {
+      "question": "How much do you need to save for this goal?"
+    },
+    "savings4": {
+      "question": "When do you want to achieve this goal by?"
+    },
+    "savings5": {
+      "question": "You have £X left over each month. How much of this would you like to save?",
+      "goalPositive": "Nice! You'll reach your goal X days before your target date.",
+      "goalNeutral": "Congratulations! You'll reach your goal on your target date.",
+      "goalNegative": "Great work! You'll reach your goal X days after your target date. You can keep your target date as is, or we can adjust it for you."
+    }
+  },
+  "dashboard": {
+    "heading": "Dashboard",
+    "subheading": "left to spend after bills",
+    "savingsGoal": "£X more to reach your goal"
+  },
+  "settings": {
+    "heading": "Settings",
+    "options": {
+      "account": "Account",
+      "darkMode": "Dark mode",
+      "faqs": "FAQs",
+      "aboutUs": "About us"
+    },
+    "incomeAndExpenses": {
+      "heading": "Income and expenses",
+      "income": {
+        "heading": "Income",
+        "text1": "I receive",
+        "text2": "each month on the",
+        "text3": "from"
+      },
+      "expenses": {
+        "heading": "Expenses",
+        "fields": {
+          "name": "Name",
+          "amount": "Amount",
+          "date": "Date"
+        }
+      }
+    }
+  },
+  "budgets": {
+    "heading": "Budgets",
+    "addBudget": {
+      "heading": "Add new budget",
+
+      "fields": {
+        "name": "Name",
+        "amount": "Amount",
+        "emoji": "Emoji"
+      }
+    },
+    "budgetCategories": [
+      {
+        "name": "Food",
+        "icon": "food"
+      },
+      {
+        "name": "Transport",
+        "icon": "transport"
+      },
+      {
+        "name": "Entertainment",
+        "icon": "entertainment"
+      },
+      {
+        "name": "Shopping",
+        "icon": "shopping"
+      },
+      {
+        "name": "Custom",
+        "icon": "custom"
+      }
+    ]
+  },
+  "bills": {
+    "heading": "Bills",
+    "addBill": {
+      "heading": "Add new bill",
+      "fields": {
+        "name": "Name",
+        "amount": "Amount",
+        "emoji": "Emoji"
+      }
+    },
+    "billsCategories": [
+      {
+        "name": "Rent",
+        "icon": "rent"
+      },
+      {
+        "name": "Mortgage",
+        "icon": "mortgage"
+      },
+      {
+        "name": "Utilities",
+        "icon": "utilities"
+      },
+      {
+        "name": "Insurance",
+        "icon": "insurance"
+      },
+      {
+        "name": "Custom",
+        "icon": "custom"
+      }
+    ]
+  },
+  "calendar": {
+    "headings": {
+      "todaysSpending": "Today's spending",
+      "dailyBudget": "Daily budget"
+    },
+    "addExpenditure": {
+      "heading": "Add expense",
+      "subheading": "Enter the details of your latest purchase.",
+      "fields": {
+        "name": "Name",
+        "amount": "Amount"
+      }
+    }
+  }
+}

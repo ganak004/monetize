@@ -1,0 +1,57 @@
+$lightPalette: (
+  skyPurple: #7180ac,
+  mutedGreen: #7c9885,
+  lightGreen: #cedf97,
+  red: #c83e4d,
+  lightBlue: #729bb9,
+  darkBlue: #0f3047,
+  purple: #9e3d8c,
+  vibrantPeach: #f47979,
+  peach: #ffb7b7,
+  yellow: #fedc97,
+  lightGrey: #e9e8e8,
+  darkGrey: #616161,
+  black: #131313,
+  white: #f0f2f3,
+  successGreen: #82d37a,
+  warningOrange: #de802a,
+);
+
+$darkPalette: (
+  skyPurple: #1a1a1a,
+  mutedGreen: #468387,
+  lightGreen: #5f8362,
+  red: #8e313b,
+  lightBlue: #546d80,
+  darkBlue: #0f3047,
+  purple: #73436a,
+  vibrantPeach: #6374b0,
+  peach: #655aa7,
+  yellow: #c57260,
+  lightGrey: #e9e8e8,
+  darkGrey: #616161,
+  black: #131313,
+  white: #313131,
+  successGreen: #4e9348,
+  warningOrange: #b27135,
+);
+
+$fontSizes: (
+  xxs: 0.7em,
+  xs: 1em,
+  s: 1.2em,
+  m: 1.5em,
+  l: 2em,
+  xl: 2.5em,
+);
+
+$paddingMargin: (
+  xxs: 1rem,
+  xs: 2rem,
+  s: 3rem,
+  m: 4rem,
+  l: 5rem,
+  xl: 6rem,
+);
+
+$fallbackFonts: Helvetica, Arial, Verdana, Tahoma, sans-serif;

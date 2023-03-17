@@ -1,0 +1,15 @@
+@use "../../../utils/global-variables" as global;
+
+.logo {
+  font-size: map-get(global.$fontSizes, m);
+  font-family: "Kaushan Script", global.$fallbackFonts;
+  padding-bottom: map-get(global.$paddingMargin, xs);
+}
+
+.logoLight {
+  color: map-get(global.$lightPalette, white);
+}
+
+.logoDark {
+  color: map-get(global.$darkPalette, skyPurple);
+}
