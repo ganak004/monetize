@@ -16,3 +16,11 @@
   align-items: center;
   text-align: center;
 }
+
+.nextButton,
+.prevButton {
+  border: none;
+  background: transparent;
+  color: map-get(global.$lightPalette, white);
+  font-size: map-get(global.$fontSizes, xs);
+}

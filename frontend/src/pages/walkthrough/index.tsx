@@ -1,11 +1,12 @@
 import { useContext, useState } from 'react';
 
+import copy from '@/assets/copy-en.json';
+
 import { ThemeContext } from '../../context';
 import Logo from '../_common/Logo';
 import ProgressBar from './_common/ProgressBar';
 import styles from './Walkthrough.module.scss';
 import { WalkthroughStep } from './WalkthroughStep';
-import copy from '@/assets/copy-en.json';
 
 const Walkthrough = () => {
   const { lightMode } = useContext(ThemeContext);
@@ -41,7 +42,13 @@ const Walkthrough = () => {
       <div className={styles.innerContainer}>
         <WalkthroughStep currentStep={currentStep} />
       </div>
-      <button onClick={handleNextStep}>{buttons['next']} ayy</button>
+      <button
+        id="next-button"
+        onClick={handleNextStep}
+        className={styles.nextButton}
+      >
+        {buttons['next']}
+      </button>
     </div>
   );
 };

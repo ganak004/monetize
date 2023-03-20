@@ -7,16 +7,11 @@
     "build": "npm run lint && sonar-scanner && next build",
     "start": "next start",
     "lint": "next lint --fix",
-    "test": "jest --coverage",
+    "test": "jest --coverage --passWithNoTests",
     "cy:open": "cypress open",
-    "test:all": "npm run lint && npm run test && npm run cypress:run",
+    "cy:run": "cypress run",
+    "test:all": "npm run lint && npm run test && npm run cy:run",
     "prepare": "cd .. && husky install frontend/.husky"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run test:all"
-    }
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -35,16 +30,18 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.55.0",
     "@typescript-eslint/parser": "^5.55.0",
-    "cypress": "^12.8.0",
+    "cypress": "^12.8.1",
     "eslint": "^8.36.0",
     "eslint-config-fbjs": "^4.0.0",
+    "eslint-config-prettier": "^8.7.0",
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-ft-flow": "^2.0.3",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
     "hermes-eslint": "^0.10.0",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "sass": "^1.58.3",
+    "ts-loader": "^9.4.2",
     "typescript": "^5.0.2"
   },
   "jest": {

@@ -26,18 +26,20 @@ export const IncomeSource = () => {
       <FormControl variant="standard" sx={{ m: 1 }} className={styles.form}>
         <Select
           // labelId="demo-simple-select-standard-label"
-          // id="demo-simple-select-standard"
+          id="income-source"
           value={incomeSource}
           defaultValue={income1['options'][0].value}
           onChange={handleChange}
           label="Source of Income"
           sx={{ color: '#f0f2f3', fontFamily: 'Palanquin' }}
         >
-          {income1['options'].map(({ label, value }) => (
-            <MenuItem key={label} value={value}>
-              {value}{' '}
-            </MenuItem>
-          ))}
+          {income1['options'].map(
+            ({ label, value }: { label: string; value: string }) => (
+              <MenuItem key={label} value={value}>
+                {value}
+              </MenuItem>
+            )
+          )}
         </Select>
       </FormControl>
     </div>
