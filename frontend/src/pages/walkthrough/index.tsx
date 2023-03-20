@@ -41,7 +41,7 @@ const Walkthrough = () => {
       <div className={styles.innerContainer}>
         <WalkthroughStep currentStep={currentStep} />
       </div>
-      <button onClick={handleNextStep}>{buttons['next']}</button>
+      <button onClick={handleNextStep}>{buttons['next']} ayy</button>
     </div>
   );
 };
