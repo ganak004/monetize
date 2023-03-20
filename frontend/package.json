@@ -9,7 +9,14 @@
     "lint": "next lint --fix",
     "test": "jest --coverage",
     "cy:open": "cypress open",
-    "test:all": "npm run lint && npm run test && npm run cypress:run"
+    "test:all": "npm run lint && npm run test && npm run cypress:run",
+    "prepare": "cd .. && husky install frontend/.husky"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run test:all"
+    }
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -36,6 +43,7 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
     "hermes-eslint": "^0.10.0",
+    "husky": "^8.0.3",
     "sass": "^1.58.3",
     "typescript": "^5.0.2"
   },
