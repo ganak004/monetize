@@ -18,10 +18,6 @@ const Walkthrough = () => {
     setCurrentStep(currentStep > 3 ? 1 : currentStep + 1);
   };
 
-  const handlePreviousStep = () => {
-    setCurrentStep(currentStep < 2 ? 1 : currentStep - 1);
-  };
-
   const progressMap: {
     [key: number]: number;
   } = {

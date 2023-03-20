@@ -7,8 +7,8 @@ const Dashboard = () => {
   const { lightMode } = useContext(ThemeContext);
 
   useEffect(() => {
-    // console.log(lightTheme.paddingMargin);
-  }, []);
+    window.alert(lightMode ? 'lightmode!' : 'darkmode!');
+  }, [lightMode]);
 
   return (
     <div id="monetize-dashboard" style={styles}>
