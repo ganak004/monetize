@@ -1,3 +1,5 @@
+export {};
+
 Cypress.Commands.add('selectIncomeSource', (source: string) => {
   // Scenario: User can see income source
   cy.get('#income-source').should('exist');
