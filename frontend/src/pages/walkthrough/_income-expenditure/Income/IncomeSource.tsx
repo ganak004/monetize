@@ -5,20 +5,18 @@ import { useState } from 'react';
 
 import copy from '@/assets/copy-en.json';
 import Header from '@/pages/_common/Header';
-import { IWalkthrough } from '@/utils/types';
 
 import styles from './Income.module.scss';
 
-export const IncomeSource = ({ handlePrev, handleNext }: IWalkthrough) => {
+export const IncomeSource = () => {
   const [incomeSource, setIncomeSource] = useState('');
 
   const {
     walkthrough: { income1 },
-    buttons,
   } = copy;
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setIncomeSource(event.target.value);
+  const handleChange = ({ target }: SelectChangeEvent) => {
+    setIncomeSource(target.value);
   };
 
   return (
@@ -35,13 +33,13 @@ export const IncomeSource = ({ handlePrev, handleNext }: IWalkthrough) => {
           label="Source of Income"
           sx={{ color: '#f0f2f3', fontFamily: 'Palanquin' }}
         >
-          {income1['options'].map(({ label, value }) =>
-            <MenuItem key={label} value={value}>{value} </MenuItem>
-          )}
-
+          {income1['options'].map(({ label, value }) => (
+            <MenuItem key={label} value={value}>
+              {value}{' '}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
-      <button className={styles.nextButton} onClick={handleNext}>{buttons['next']}</button>
     </div>
   );
 };

@@ -1,0 +1,19 @@
+{
+  "name": "monetize",
+  "version": "1.0.0",
+  "description": "An app that allows users to track their spending and income, and provides a way to set their own budgets and savings goals.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ganak004/monetize.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ganak004/monetize/issues"
+  },
+  "homepage": "https://github.com/ganak004/monetize#readme"
+}
