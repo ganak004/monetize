@@ -4,20 +4,14 @@ import IncomeDate from './_income-expenditure/Income/IncomeDate';
 import IncomeSource from './_income-expenditure/Income/IncomeSource';
 
 interface IWalkthroughStep {
-  currentStep: number,
-  handlePrev: () => void,
-  handleNext: () => void,
+  currentStep: number;
 }
 
-export const WalkthroughStep = ({
-  currentStep,
-  handlePrev,
-  handleNext,
-}: IWalkthroughStep) => {
+export const WalkthroughStep = ({ currentStep }: IWalkthroughStep) => {
   const steps = [IncomeSource, IncomeAmount, IncomeDate, Expenses];
 
   const stepIndex = currentStep - 1;
   const StepComponent = steps[stepIndex] || IncomeSource;
 
-  return <StepComponent handlePrev={handlePrev} handleNext={handleNext} />;
+  return <StepComponent />;
 };

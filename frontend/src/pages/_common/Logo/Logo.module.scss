@@ -1,13 +1,18 @@
-@use "../../../utils/global-variables" as global;
+@use '../../../utils/global-variables' as global;
 
 .logo {
   font-size: map-get(global.$fontSizes, m);
-  font-family: "Kaushan Script", global.$fallbackFonts;
+  font-family: 'Kaushan Script', global.$fallbackFonts;
   padding-bottom: map-get(global.$paddingMargin, xs);
+  background-color: #565656;
+  color: transparent;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
 }
 
 .logoLight {
-  color: map-get(global.$lightPalette, white);
+  text-shadow: 0px 2px 1px rgba(255 255 255 / 100%);
 }
 
 .logoDark {

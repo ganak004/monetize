@@ -5,20 +5,18 @@ import { useState } from 'react';
 
 import copy from '@/assets/copy-en.json';
 import Header from '@/pages/_common/Header';
-import { IWalkthrough } from '@/utils/types';
 
 import styles from './Income.module.scss';
 
-export const IncomeSource = ({ handlePrev, handleNext }: IWalkthrough) => {
+export const IncomeSource = () => {
   const [incomeSource, setIncomeSource] = useState('');
 
   const {
     walkthrough: { income1 },
-    buttons,
   } = copy;
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setIncomeSource(event.target.value);
+  const handleChange = ({ target }: SelectChangeEvent) => {
+    setIncomeSource(target.value);
   };
 
   return (
@@ -28,20 +26,22 @@ export const IncomeSource = ({ handlePrev, handleNext }: IWalkthrough) => {
       <FormControl variant="standard" sx={{ m: 1 }} className={styles.form}>
         <Select
           // labelId="demo-simple-select-standard-label"
-          // id="demo-simple-select-standard"
+          id="income-source"
           value={incomeSource}
           defaultValue={income1['options'][0].value}
           onChange={handleChange}
           label="Source of Income"
           sx={{ color: '#f0f2f3', fontFamily: 'Palanquin' }}
         >
-          {income1['options'].map(({ label, value }) =>
-            <MenuItem key={label} value={value}>{value} </MenuItem>
+          {income1['options'].map(
+            ({ label, value }: { label: string; value: string }) => (
+              <MenuItem key={label} value={value}>
+                {value}
+              </MenuItem>
+            )
           )}
-
         </Select>
       </FormControl>
-      <button className={styles.nextButton} onClick={handleNext}>{buttons['next']}</button>
     </div>
   );
 };

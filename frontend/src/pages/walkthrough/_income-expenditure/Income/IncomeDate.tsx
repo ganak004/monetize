@@ -1,8 +1,7 @@
 import copy from '@/assets/copy-en.json';
 import Header from '@/pages/_common/Header';
-import { IWalkthrough } from '@/utils/types';
 
-export const IncomeDate = ({ handlePrev, handleNext }: IWalkthrough) => (
+export const IncomeDate = () => (
   <div>
     <Header
       heading={copy['walkthrough']['income3']['heading']}
@@ -10,7 +9,6 @@ export const IncomeDate = ({ handlePrev, handleNext }: IWalkthrough) => (
     />
     <p>{copy['walkthrough']['income3']['question']}</p>
     <div>dropdown component</div>
-    <button onClick={handleNext}>{copy['buttons']['next']}</button>
   </div>
 );
 

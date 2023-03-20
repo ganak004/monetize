@@ -1,4 +1,4 @@
-@use "../../../../utils/global-variables" as global;
+@use '../../../../utils/global-variables' as global;
 
 .question {
   font-family: Palanquin, global.$fallbackFonts;
@@ -9,14 +9,6 @@
 .walkthroughContainer {
   display: flex;
   flex-direction: column;
-}
-
-.nextButton,
-.prevButton {
-  border: none;
-  background: transparent;
-  color: map-get(global.$lightPalette, white);
-  font-size: map-get(global.$fontSizes, xs);
 }
 
 .form {
