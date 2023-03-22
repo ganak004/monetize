@@ -4,34 +4,46 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useState } from 'react';
 
 import copy from '@/assets/copy-en.json';
+import Button from '@/pages/_common/Button';
 import Header from '@/pages/_common/Header';
+import { IWalkthrough } from '@/utils/types';
 
 import styles from './Income.module.scss';
 
-export const IncomeSource = () => {
-  const [incomeSource, setIncomeSource] = useState('');
-
+export const IncomeSource = ({ handleNext }: IWalkthrough) => {
   const {
     walkthrough: { income1 },
   } = copy;
+
+  const [incomeSource, setIncomeSource] = useState(income1['options'][0].value);
 
   const handleChange = ({ target }: SelectChangeEvent) => {
     setIncomeSource(target.value);
   };
 
   return (
-    <div className={styles.walkthroughContainer}>
+    <div>
       <Header heading={income1['heading']} subheading={income1['subheading']} />
       <p className={styles.question}>{income1['question']}</p>
       <FormControl variant="standard" sx={{ m: 1 }} className={styles.form}>
         <Select
-          // labelId="demo-simple-select-standard-label"
           id="income-source"
           value={incomeSource}
-          defaultValue={income1['options'][0].value}
           onChange={handleChange}
           label="Source of Income"
-          sx={{ color: '#f0f2f3', fontFamily: 'Palanquin' }}
+          sx={{
+            color: '#f0f2f3',
+            fontFamily: 'Palanquin',
+            borderBottom: '1px solid #f0f2f3',
+            '&:hover': {
+              '&::before': {
+                borderBottom: '1px solid black !important',
+              },
+            },
+            '& .MuiSelect-icon': {
+              color: '#f0f2f3',
+            },
+          }}
         >
           {income1['options'].map(
             ({ label, value }: { label: string; value: string }) => (
@@ -42,6 +54,7 @@ export const IncomeSource = () => {
           )}
         </Select>
       </FormControl>
+      <Button handleClick={handleNext} buttonText="next" buttonType="normal" />
     </div>
   );
 };

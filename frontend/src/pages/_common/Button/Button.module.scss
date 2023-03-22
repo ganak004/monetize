@@ -1,0 +1,29 @@
+@use '../../../utils/global-variables' as global;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.buttonNormal,
+.buttonUnderlined {
+  border: none;
+  background: transparent;
+  color: map-get(global.$lightPalette, white);
+  font-size: map-get(global.$fontSizes, xs);
+}
+
+.buttonUnderlined {
+  text-decoration: underline;
+}
+
+.buttonBoxedPrimary {
+  // TODO: add primary
+}
+
+.buttonBoxedSecondary {
+  // TODO: add secondary
+}
