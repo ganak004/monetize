@@ -3,3 +3,4 @@
 .scannerwork
 frontend/cypress/videos
 frontend/cypress/screenshots
+node_modules
