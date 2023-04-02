@@ -1,5 +1,5 @@
 export interface IWalkthrough {
-  handleNext: () => void;
+  setValidInput: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export type TButtonText =

@@ -8,6 +8,7 @@ interface IButton {
   buttonText: TButtonText;
   buttonType: TButtonType;
   buttonVariant?: TButtonVariant;
+  disabled: boolean;
 }
 
 const Button = ({
@@ -15,6 +16,7 @@ const Button = ({
   buttonText,
   buttonType,
   buttonVariant = 'primary',
+  disabled,
 }: IButton) => {
   const { buttons } = copy;
 
@@ -37,7 +39,12 @@ const Button = ({
 
   return (
     <div className={styles.container}>
-      <button id="next-button" onClick={handleClick} className={returnStyles()}>
+      <button
+        id="next-button"
+        onClick={handleClick}
+        className={returnStyles()}
+        disabled={disabled}
+      >
         {buttons[buttonText]}
       </button>
     </div>

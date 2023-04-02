@@ -27,3 +27,10 @@
 .buttonBoxedSecondary {
   // TODO: add secondary
 }
+
+.buttonUnderlined:disabled,
+.buttonNormal:disabled,
+.buttonBoxedPrimary:disabled,
+.buttonBoxedSecondary:disabled {
+  color: rgb(76, 76, 76, 50%);
+}

@@ -10,6 +10,10 @@
   background-color: map-get(global.$lightPalette, skyPurple);
 }
 
+.backgroundDark {
+  background-color: map-get(global.$darkPalette, skyPurple);
+}
+
 .innerContainer {
   padding: map-get(global.$paddingMargin, xs);
   display: flex;
