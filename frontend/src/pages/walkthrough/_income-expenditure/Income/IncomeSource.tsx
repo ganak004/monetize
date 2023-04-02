@@ -5,33 +5,39 @@ import { useState } from 'react';
 
 import copy from '@/assets/copy-en.json';
 import Header from '@/pages/_common/Header';
+import { incomeSourceStyles } from '@/utils/muiStyles';
+import { IWalkthrough } from '@/utils/types';
 
 import styles from './Income.module.scss';
 
-export const IncomeSource = () => {
-  const [incomeSource, setIncomeSource] = useState('');
-
+export const IncomeSource = ({ setValidInput }: IWalkthrough) => {
   const {
     walkthrough: { income1 },
   } = copy;
 
+  const [incomeSource, setIncomeSource] = useState('');
+
   const handleChange = ({ target }: SelectChangeEvent) => {
     setIncomeSource(target.value);
+    setValidInput(true);
   };
 
   return (
-    <div className={styles.walkthroughContainer}>
+    <div>
       <Header heading={income1['heading']} subheading={income1['subheading']} />
       <p className={styles.question}>{income1['question']}</p>
-      <FormControl variant="standard" sx={{ m: 1 }} className={styles.form}>
+      <FormControl
+        variant="standard"
+        sx={{ m: 1, width: '100%' }}
+        className={styles.form}
+      >
         <Select
-          // labelId="demo-simple-select-standard-label"
           id="income-source"
+          data-testid="income-source"
           value={incomeSource}
-          defaultValue={income1['options'][0].value}
           onChange={handleChange}
           label="Source of Income"
-          sx={{ color: '#f0f2f3', fontFamily: 'Palanquin' }}
+          sx={incomeSourceStyles}
         >
           {income1['options'].map(
             ({ label, value }: { label: string; value: string }) => (

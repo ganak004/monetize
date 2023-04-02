@@ -1,0 +1,15 @@
+{
+  "name": "monetize",
+  "version": "1.0.0",
+  "description": "An app that allows users to track their spending and income, and provides a way to set their own budgets and savings goals.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^8.0.0"
+  }
+}

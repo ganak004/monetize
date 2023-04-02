@@ -3,7 +3,7 @@
 .question {
   font-family: Palanquin, global.$fallbackFonts;
   color: map-get(global.$lightPalette, white);
-  font-size: map-get(global.$fontSizes, s);
+  font-size: map-get(global.$fontSizes, xs);
 }
 
 .walkthroughContainer {

@@ -1,15 +1,53 @@
+import { FormControl, MenuItem } from '@mui/material';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { useState } from 'react';
+
 import copy from '@/assets/copy-en.json';
 import Header from '@/pages/_common/Header';
+import { incomeDates } from '@/utils/constants';
+import { incomeSourceStyles } from '@/utils/muiStyles';
+import { IWalkthrough } from '@/utils/types';
 
-export const IncomeDate = () => (
-  <div>
-    <Header
-      heading={copy['walkthrough']['income3']['heading']}
-      subheading={copy['walkthrough']['income3']['subheading']}
-    />
-    <p>{copy['walkthrough']['income3']['question']}</p>
-    <div>dropdown component</div>
-  </div>
-);
+import styles from './Income.module.scss';
+
+export const IncomeDate = ({ setValidInput }: IWalkthrough) => {
+  const {
+    walkthrough: { income3 },
+  } = copy;
+
+  const [incomeDate, setIncomeDate] = useState('');
+
+  const handleChange = ({ target }: SelectChangeEvent) => {
+    setIncomeDate(target.value);
+    setValidInput(true);
+  };
+
+  return (
+    <div>
+      <Header heading={income3['heading']} subheading={income3['subheading']} />
+      <p className={styles.question}>{income3['question']}</p>
+      <FormControl
+        variant="standard"
+        sx={{ m: 1, width: '100%' }}
+        className={styles.form}
+      >
+        <Select
+          id="income-date"
+          value={incomeDate}
+          onChange={handleChange}
+          label="Income Date"
+          sx={incomeSourceStyles}
+        >
+          {incomeDates.map(({ number, suffix }) => (
+            <MenuItem key={number} value={`${number}${suffix}`}>
+              {number}
+              <span>{suffix}</span>
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </div>
+  );
+};
 
 export default IncomeDate;

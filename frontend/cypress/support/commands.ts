@@ -1,8 +1,9 @@
-export {};
-
 Cypress.Commands.add('selectIncomeSource', (source: string) => {
   // Scenario: User can see income source
   cy.get('#income-source').should('exist');
+
+  // Next button should be disabled
+  cy.get('#next-button').should('be.disabled');
 
   // Scenario: User can add income source
   cy.get('#income-source').click();
@@ -13,6 +14,69 @@ Cypress.Commands.add('selectIncomeSource', (source: string) => {
   cy.get('#next-button').click();
   cy.get('#income-source').should('not.exist');
 });
+
+Cypress.Commands.add('selectIncomeAmount', (amount: string) => {
+  // Scenario: User can see income amount
+  cy.get('#income-amount').should('exist');
+
+  // Next button should be disabled
+  cy.get('#next-button').should('be.disabled');
+
+  // Scenario: User can add income amount
+  cy.get('#income-amount').type(amount);
+  cy.get('#income-amount').should(
+    'have.value',
+    Number(amount).toLocaleString()
+  );
+
+  // Scenario: User can click next button
+  cy.get('#next-button').click();
+  cy.get('#income-amount').should('not.exist');
+});
+
+Cypress.Commands.add('selectIncomeDate', (date: string) => {
+  // Scenario: User can see salary date
+  cy.get('#income-date').should('exist');
+
+  // Next button should be disabled
+  cy.get('#next-button').should('be.disabled');
+
+  // Scenario: User can add income date
+  cy.get('#income-date').click();
+  cy.contains(date).click();
+  cy.contains(date).should('be.visible');
+
+  // Scenario: User can click next button
+  cy.get('#next-button').click();
+  cy.get('#income-date').should('not.exist');
+});
+
+Cypress.Commands.add(
+  'addExpenses',
+  (expenses: { name: string; amount: string; date: string }[]) => {
+    // Scenario: User can see expenses
+    cy.get('#expenses').should('exist');
+
+    // Next button should be disabled
+    cy.get('#next-button').should('be.disabled');
+
+    // Scenario: User can add expenses
+    expenses.forEach((expense) => {
+      cy.get('#add-expense').click();
+      cy.get('#expense-name').type(expense.name);
+      cy.get('#expense-amount').type(expense.amount);
+      cy.get('#expense-date').click();
+      cy.contains(expense.date).click();
+
+      // Select "+" button
+      cy.get('#add-expense').click();
+    });
+
+    // Scenario: User can click next button
+    cy.get('#next-button').click();
+    cy.get('#expenses').should('not.exist');
+  }
+);
 
 // ***********************************************
 // This example commands.ts shows you how to
