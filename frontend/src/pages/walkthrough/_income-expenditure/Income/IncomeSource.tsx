@@ -8,7 +8,7 @@ import Header from '@/pages/_common/Header';
 import { incomeSourceStyles } from '@/utils/muiStyles';
 import { IWalkthrough } from '@/utils/types';
 
-import styles from './Income.module.scss';
+import styles from '../IncomeExpenditure.module.scss';
 
 export const IncomeSource = ({ setValidInput }: IWalkthrough) => {
   const {
@@ -19,11 +19,11 @@ export const IncomeSource = ({ setValidInput }: IWalkthrough) => {
 
   const handleChange = ({ target }: SelectChangeEvent) => {
     setIncomeSource(target.value);
-    setValidInput(true);
+    setValidInput?.(true);
   };
 
   return (
-    <div>
+    <div data-testid="walkthrough-income-source">
       <Header heading={income1['heading']} subheading={income1['subheading']} />
       <p className={styles.question}>{income1['question']}</p>
       <FormControl

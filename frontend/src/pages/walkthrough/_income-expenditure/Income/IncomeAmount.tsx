@@ -1,14 +1,17 @@
 import { FormControl, InputAdornment, TextField } from '@mui/material';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import copy from '@/assets/copy-en.json';
+import { ExpenseTotalsContext } from '@/context';
 import Header from '@/pages/_common/Header';
 import { incomeAdornmentStyles, incomeAmountStyles } from '@/utils/muiStyles';
 import { IWalkthrough } from '@/utils/types';
 
-import styles from './Income.module.scss';
+import styles from '../IncomeExpenditure.module.scss';
 
 export const IncomeAmount = ({ setValidInput }: IWalkthrough) => {
+  const { setAmountIn } = useContext(ExpenseTotalsContext);
+
   const {
     walkthrough: { income2 },
   } = copy;
@@ -24,11 +27,12 @@ export const IncomeAmount = ({ setValidInput }: IWalkthrough) => {
       (numberRegex.test(sanitizedValue) && sanitizedValue.length < 7)
     ) {
       setIncomeAmount(Number(sanitizedValue).toLocaleString());
-      setValidInput(true);
+      setValidInput?.(true);
+      setAmountIn(Number(sanitizedValue));
     }
   };
   return (
-    <div>
+    <div data-testid="walkthrough-income-amount">
       <Header heading={income2['heading']} subheading={income2['subheading']} />
       <p className={styles.question}>{income2['question']}</p>
       <FormControl sx={{ m: 1, width: '100%' }} className={styles.form}>
@@ -50,7 +54,11 @@ export const IncomeAmount = ({ setValidInput }: IWalkthrough) => {
               </InputAdornment>
             ),
           }}
-          sx={incomeAmountStyles}
+          sx={{
+            ...incomeAmountStyles,
+            letterSpacing: '3px',
+            margin: '0 1rem',
+          }}
         />
       </FormControl>
     </div>

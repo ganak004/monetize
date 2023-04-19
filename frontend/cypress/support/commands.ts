@@ -55,21 +55,25 @@ Cypress.Commands.add(
   'addExpenses',
   (expenses: { name: string; amount: string; date: string }[]) => {
     // Scenario: User can see expenses
-    cy.get('#expenses').should('exist');
+    cy.get('[data-testid="walkthrough-expenses"]').should('exist');
 
     // Next button should be disabled
-    cy.get('#next-button').should('be.disabled');
+    cy.get('[data-testid="walkthrough-next-button"]').should('be.disabled');
 
     // Scenario: User can add expenses
-    expenses.forEach((expense) => {
-      cy.get('#add-expense').click();
-      cy.get('#expense-name').type(expense.name);
-      cy.get('#expense-amount').type(expense.amount);
-      cy.get('#expense-date').click();
-      cy.contains(expense.date).click();
 
-      // Select "+" button
+    for (let i = 1; i <= 2; i++) {
       cy.get('#add-expense').click();
+    }
+    cy.get('.expense-name').each(($el, i) => {
+      cy.wrap($el).type(expenses[i].name);
+    });
+    cy.get('.expense-amount').each(($el, i) => {
+      cy.wrap($el).type(expenses[i].amount);
+    });
+    cy.get('.expense-date').each(($el, i) => {
+      cy.wrap($el).click();
+      cy.contains(expenses[i].date).click();
     });
 
     // Scenario: User can click next button

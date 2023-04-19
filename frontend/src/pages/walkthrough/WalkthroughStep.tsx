@@ -2,12 +2,16 @@ import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
+import copy from '@/assets/copy-en.json';
 import Button from '@/pages/_common/Button';
+import { TButtonText } from '@/utils/types';
 
 import Expenses from './_income-expenditure/Expenses/Expenses';
 import IncomeAmount from './_income-expenditure/Income/IncomeAmount';
 import IncomeDate from './_income-expenditure/Income/IncomeDate';
 import IncomeSource from './_income-expenditure/Income/IncomeSource';
+import Results from './_results/index';
+import styles from './Walkthrough.module.scss';
 
 interface IWalkthroughStep {
   currentStep: number;
@@ -18,11 +22,15 @@ export const WalkthroughStep = ({
   currentStep,
   handleNext,
 }: IWalkthroughStep) => {
-  const steps = [IncomeSource, IncomeAmount, IncomeDate, Expenses];
+  const steps = [IncomeSource, IncomeAmount, IncomeDate, Expenses, Results];
   const [validInput, setValidInput] = useState(false);
 
   const stepIndex = currentStep - 1;
   const StepComponent = steps[stepIndex] || IncomeSource;
+
+  const {
+    buttons: { finish, next },
+  } = copy;
 
   useEffect(() => {
     setValidInput(false);
@@ -37,13 +45,25 @@ export const WalkthroughStep = ({
         transition={{ duration: 0.2 }}
         key={`walkthrough-${currentStep}`}
       >
-        <StepComponent setValidInput={setValidInput} />
-        <Button
-          handleClick={handleNext}
-          buttonText="next"
-          buttonType="normal"
-          disabled={!validInput}
-        />
+        <div className={styles.stepContainer}>
+          {currentStep <= 5 ? (
+            <StepComponent setValidInput={setValidInput} />
+          ) : (
+            <StepComponent />
+          )}
+          {currentStep < 5 && (
+            <Button
+              handleClick={handleNext}
+              buttonText={
+                currentStep === 4
+                  ? (finish as TButtonText)
+                  : (next as TButtonText)
+              }
+              buttonType="normal"
+              disabled={!validInput}
+            />
+          )}
+        </div>
       </motion.div>
     </AnimatePresence>
   );

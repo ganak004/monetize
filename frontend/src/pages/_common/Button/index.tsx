@@ -1,4 +1,3 @@
-import copy from '@/assets/copy-en.json';
 import { TButtonText, TButtonType, TButtonVariant } from '@/utils/types';
 
 import styles from './Button.module.scss';
@@ -18,8 +17,6 @@ const Button = ({
   buttonVariant = 'primary',
   disabled,
 }: IButton) => {
-  const { buttons } = copy;
-
   const returnStyles = () => {
     switch (buttonType) {
       case 'boxed':
@@ -44,8 +41,9 @@ const Button = ({
         onClick={handleClick}
         className={returnStyles()}
         disabled={disabled}
+        data-testid="walkthrough-next-button"
       >
-        {buttons[buttonText]}
+        {buttonText}
       </button>
     </div>
   );

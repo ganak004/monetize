@@ -110,7 +110,7 @@
     "income2": {
       "heading": "Great start!",
       "subheading": "Let's keep going.",
-      "question": "...and how much is it?",
+      "question": "How much do you receive?",
       "perMonth": "per month",
       "progress": 50
     },
@@ -122,8 +122,8 @@
     },
     "expenses1": {
       "heading": "Brilliant.",
-      "subheading": "Now, let's talk expenses.",
-      "question": "List your monthly expenses below. Tip: start with the most important ones, like rent or mortgage, and bills.",
+      "subheading": "Now, let's talk expenses. List them below.",
+      "question": "List your monthly expenses below.",
       "fields": {
         "name": "Name",
         "amount": "Amount",

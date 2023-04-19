@@ -11,7 +11,7 @@ const Walkthrough = () => {
   const [currentStep, setCurrentStep] = useState(1);
 
   const handleNextStep = () => {
-    setCurrentStep(currentStep > 3 ? 1 : currentStep + 1);
+    setCurrentStep((prevStep) => prevStep + 1);
   };
 
   const progressMap: {
@@ -30,7 +30,7 @@ const Walkthrough = () => {
       }`}
     >
       <Logo color="light" />
-      <ProgressBar progress={progressMap[currentStep]} />
+      {currentStep < 5 && <ProgressBar progress={progressMap[currentStep]} />}
       <div className={styles.innerContainer}>
         <WalkthroughStep
           currentStep={currentStep}
