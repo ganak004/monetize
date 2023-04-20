@@ -1,0 +1,17 @@
+@use '../../../utils/global-variables' as global;
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  flex-direction: column;
+}
+
+.loadingText {
+  font-family: Maven Pro, global.$fallbackFonts;
+  font-size: map-get(global.$fontSizes, l);
+  margin-bottom: map-get(global.$paddingMargin, xs);
+  font-weight: 600;
+  color: map-get(global.$lightPalette, white);
+}

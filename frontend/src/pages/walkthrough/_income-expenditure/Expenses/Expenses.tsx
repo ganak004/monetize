@@ -1,19 +1,216 @@
-import copy from '@/assets/copy-en.json';
-import Header from '@/pages/_common/Header';
+import {
+  FormControl,
+  InputAdornment,
+  MenuItem,
+  TextField,
+} from '@mui/material';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { ChangeEvent, useContext, useEffect } from 'react';
 
-export const Expenses = () => {
+import copy from '@/assets/copy-en.json';
+import { ExpensesContext, ExpenseTotalsContext } from '@/context';
+import Header from '@/pages/_common/Header';
+import { incomeDates } from '@/utils/constants';
+import {
+  expenseAmountStyles,
+  expenseDateStyles,
+  expenseNameStyles,
+  incomeAdornmentStyles,
+} from '@/utils/muiStyles';
+import { IWalkthrough } from '@/utils/types';
+
+import styles from '../IncomeExpenditure.module.scss';
+
+export const Expenses = ({ setValidInput }: IWalkthrough) => {
+  const { amountIn, amountOut, setAmountOut } =
+    useContext(ExpenseTotalsContext);
+
+  const { expenses, setExpenses } = useContext(ExpensesContext);
+
   const {
     walkthrough: { expenses1 },
   } = copy;
 
+  const sumExpenses = (
+    expensesArr: Array<{
+      expenseName: string;
+      expenseAmount: string;
+      expenseDate: string;
+    }>
+  ) => {
+    let total = 0;
+
+    expensesArr.forEach((expense) => {
+      total += Number(expense.expenseAmount.replace(',', ''));
+    });
+
+    return total;
+  };
+
+  const handleExpenseFieldChange = (
+    e:
+      | ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+      | SelectChangeEvent<string>,
+    index: number
+  ) => {
+    const updatedExpenses = [...expenses];
+
+    if (e.target.name === 'expenseAmount') {
+      const sanitizedValue = e.target.value.replace(',', '');
+      const numberRegex = /^[0-9\b]+$/;
+
+      if (
+        sanitizedValue === '' ||
+        (numberRegex.test(sanitizedValue) && sanitizedValue.length < 7)
+      ) {
+        updatedExpenses[index] = {
+          ...updatedExpenses[index],
+          [e.target.name]: Number(sanitizedValue).toLocaleString(),
+        };
+      }
+    } else {
+      updatedExpenses[index] = {
+        ...updatedExpenses[index],
+        [e.target.name]: e.target.value,
+      };
+    }
+
+    setExpenses(updatedExpenses);
+    setAmountOut(sumExpenses(updatedExpenses));
+  };
+
+  const handlePlusClick = () => {
+    setExpenses((prevExpenses) => [
+      ...prevExpenses,
+      {
+        expenseName: '',
+        expenseAmount: '',
+        expenseDate: '',
+      },
+    ]);
+  };
+
+  useEffect(() => {
+    const hasEmptyValues = expenses.every(
+      (expense) =>
+        expense.expenseName === '' ||
+        expense.expenseAmount === '' ||
+        expense.expenseDate === ''
+    );
+
+    if (expenses.length > 0 && !hasEmptyValues) {
+      setValidInput?.(true);
+    }
+  }, [expenses, setValidInput]);
+
   return (
-    <div>
+    <div data-testid="walkthrough-expenses">
       <Header
         heading={expenses1['heading']}
         subheading={expenses1['subheading']}
       />
-      <p>{expenses1['question']}</p>
-      <div>dropdown component</div>
+      <div className={styles.expensesContainerOuter}>
+        <div className={styles.expensesContainerInner}>
+          <div className={styles.expenseTableHeaders}>
+            <p>Name</p>
+            <p>Amount</p>
+            <p>Date</p>
+          </div>
+          {expenses.map(({ expenseName, expenseAmount, expenseDate }, i) => (
+            <FormControl
+              variant="standard"
+              sx={{
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                gap: '2rem',
+              }}
+              className={styles.expenseForm}
+              key={'expense' + i}
+              data-testid={`expense-row-${i + 1}`}
+            >
+              <TextField
+                className="expense-name"
+                label="Expense name"
+                variant="standard"
+                value={expenseName || ''}
+                name="expenseName"
+                onChange={(e) => handleExpenseFieldChange(e, i)}
+                sx={expenseNameStyles}
+                inputProps={{
+                  'data-testid': `expense-name-${i + 1}`,
+                }}
+              />
+              <TextField
+                className="expense-amount"
+                label="Expense amount"
+                variant="standard"
+                value={expenseAmount || ''}
+                name="expenseAmount"
+                onChange={(e) => handleExpenseFieldChange(e, i)}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start" sx={incomeAdornmentStyles}>
+                      £
+                    </InputAdornment>
+                  ),
+                }}
+                sx={expenseAmountStyles}
+                inputProps={{
+                  'data-testid': `expense-amount-${i + 1}`,
+                }}
+              />
+              <Select
+                className="expense-date"
+                value={expenseDate || ''}
+                name="expenseDate"
+                onChange={(e) => handleExpenseFieldChange(e, i)}
+                label="Expense Date"
+                sx={expenseDateStyles}
+                inputProps={{
+                  'data-testid': `expense-date-${i + 1}`,
+                }}
+              >
+                {incomeDates.map(({ number, suffix }) => (
+                  <MenuItem key={number} value={`${number}${suffix}`}>
+                    <p className={styles.expenseDate}>
+                      {number}
+                      <sup>{suffix}</sup>
+                    </p>
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          ))}
+          <button
+            className={styles.plusButton}
+            onClick={handlePlusClick}
+            id="add-expense"
+            aria-label="Add expense"
+          >
+            +
+          </button>
+        </div>
+        <div className={styles.inOut}>
+          <p className={styles.inOutText}>
+            In:
+            <span
+              className={styles.inTotal}
+            >{` £${amountIn.toLocaleString()}`}</span>
+          </p>
+          <p className={styles.inOutText}>
+            Out:
+            <span
+              className={
+                amountIn < amountOut ? styles.outOfBudget : styles.inBudget
+              }
+            >
+              {` £${amountOut.toLocaleString()}`}
+            </span>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

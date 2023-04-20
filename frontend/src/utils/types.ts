@@ -1,5 +1,5 @@
 export interface IWalkthrough {
-  setValidInput: React.Dispatch<React.SetStateAction<boolean>>;
+  setValidInput?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export type TButtonText =

@@ -12,22 +12,22 @@ describe('Walkthrough Process', () => {
   it('can add income date', () => {
     cy.selectIncomeDate('24');
   });
-  it.skip('can add expenses', () => {
+  it('can add expenses', () => {
     cy.addExpenses([
       {
         name: 'Rent',
         amount: '1000',
-        date: '24',
+        date: '24th',
       },
       {
         name: 'Food',
         amount: '200',
-        date: '24',
+        date: '25th',
       },
       {
         name: 'Transport',
         amount: '100',
-        date: '12',
+        date: '12th',
       },
     ]);
   });

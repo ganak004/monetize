@@ -1,6 +1,7 @@
 export const incomeSourceStyles = {
   color: '#f0f2f3',
   fontFamily: 'Palanquin',
+  fontSize: '1.3em',
   borderBottom: '1px solid #f0f2f3',
   '&::after': {
     borderBottom: '1px solid #690303 !important',
@@ -35,9 +36,9 @@ export const incomeAmountStyles = {
     color: '#f0f2f3',
     textAlign: 'center',
     fontSize: '2em',
-    fontFamily: 'Bad Script',
+    fontFamily: 'Maven Pro',
     fontWeight: 'bold',
-    letterSpacing: '3px',
+    letterSpacing: '1px',
   },
   '& .MuiInput-underline': {
     '&::after': {
@@ -58,4 +59,29 @@ export const incomeAdornmentStyles = {
     color: '#f0f2f3',
     fontFamily: 'Palanquin',
   },
+};
+
+export const expenseNameStyles = {
+  ...incomeAmountStyles,
+
+  '& input': {
+    ...incomeAmountStyles['& input'],
+    fontSize: '0.8em',
+    fontFamily: 'Palanquin',
+  },
+  width: '33%',
+};
+
+export const expenseDateStyles = {
+  ...incomeDateStyles,
+  width: '33%',
+};
+
+export const expenseAmountStyles = {
+  ...incomeAmountStyles,
+  '& input': {
+    ...incomeAmountStyles['& input'],
+    fontSize: '0.8em',
+  },
+  width: '33%',
 };

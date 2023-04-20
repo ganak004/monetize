@@ -1,0 +1,91 @@
+@use '../../../utils/global-variables' as global;
+
+.question {
+  font-family: Palanquin, global.$fallbackFonts;
+  color: map-get(global.$lightPalette, white);
+  font-size: map-get(global.$fontSizes, xs);
+}
+
+.walkthroughContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.incomeDate,
+.expenseDate {
+  margin: 0;
+}
+
+.expenseDate {
+  font-size: map-get(global.$fontSizes, xxs);
+}
+
+.incomeDate sup,
+.expenseDate sup {
+  font-size: map-get(global.$fontSizes, xxs);
+}
+
+.form {
+  padding-bottom: map-get(global.$paddingMargin, m);
+}
+
+.expenseTableHeaders {
+  display: flex;
+  justify-content: space-between;
+  color: map-get(global.$lightPalette, white);
+  font-family: Maven Pro, global.$fallbackFonts;
+  font-size: map-get(global.$fontSizes, xxs);
+  font-weight: bold;
+}
+
+.expenseTableHeaders > p {
+  text-align: center;
+  margin: 0;
+}
+
+.expensesContainerInner {
+  height: 30vh;
+  width: 100%;
+  overflow: scroll;
+  box-shadow: inset 0 -10px 10px -10px #444f74;
+  position: relative;
+}
+
+.expenseForm:last-of-type {
+  padding-bottom: map-get(global.$paddingMargin, xs);
+}
+
+.plusButton {
+  background: transparent;
+  border: none;
+  color: map-get(global.$lightPalette, white);
+  font-size: map-get(global.$fontSizes, m);
+  padding-bottom: map-get(global.$paddingMargin, m);
+}
+
+.inOut {
+  display: flex;
+  justify-content: space-between;
+  color: map-get(global.$lightPalette, white);
+  font-family: Palanquin, global.$fallbackFonts;
+}
+
+.inBudget {
+  color: map-get(global.$lightPalette, successGreen);
+  font-family: Maven Pro, global.$fallbackFonts;
+  font-weight: bold;
+}
+
+.outOfBudget {
+  color: map-get(global.$lightPalette, errorRed);
+  font-family: Maven Pro, global.$fallbackFonts;
+  font-weight: bold;
+}
+
+.inTotal,
+.outTotal {
+  font-family: Maven Pro, global.$fallbackFonts;
+  font-weight: bold;
+}
+
+// sort out outTotal

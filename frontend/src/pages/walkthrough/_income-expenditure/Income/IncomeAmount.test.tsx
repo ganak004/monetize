@@ -6,7 +6,7 @@ import IncomeAmount from './IncomeAmount';
 describe('IncomeAmount', () => {
   it('renders the component', () => {
     render(<IncomeAmount setValidInput={() => jest.fn()} />);
-    expect(screen.getByText(/and how much is it/i)).toBeInTheDocument();
+    expect(screen.getByText(/how much do you receive/i)).toBeInTheDocument();
   });
 
   it('calls setValidInput when the input is changed', () => {
