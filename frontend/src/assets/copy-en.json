@@ -142,7 +142,8 @@
       "headingPositive": "Great job!",
       "headingNeutral": "Let's get you back on track.",
       "headingNegative": "Let's turn this around",
-      "subheadingPositive": "You have £X left over each month!",
+      "subheadingPositiveStart": "You have ",
+      "subheadingPositiveEnd": " left over each month!",
       "subheadingNeutral": "It looks like you're breaking even each month. Let's see where we can make some adjustments and help you save some money.",
       "subheadingNegative": "It looks like you're spending more than you're earning each month. Don't worry, we're here to help! Let's get you back on track.",
       "description": "Want to make some plans to save?"

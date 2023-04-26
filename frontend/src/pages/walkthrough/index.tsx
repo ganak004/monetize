@@ -1,14 +1,17 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import { ThemeContext } from '../../context';
+import type { RootState } from '@/redux/store';
+
 import Logo from '../_common/Logo';
 import ProgressBar from './_common/ProgressBar';
+import { WalkthroughStep } from './_common/WalkthroughStep';
 import styles from './Walkthrough.module.scss';
-import { WalkthroughStep } from './WalkthroughStep';
 
 const Walkthrough = () => {
-  const { lightMode } = useContext(ThemeContext);
   const [currentStep, setCurrentStep] = useState(1);
+
+  const lightMode = useSelector((state: RootState) => state.app.lightMode);
 
   const handleNextStep = () => {
     setCurrentStep((prevStep) => prevStep + 1);

@@ -1,22 +1,23 @@
 import { FormControl, InputAdornment, TextField } from '@mui/material';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import copy from '@/assets/copy-en.json';
-import { ExpenseTotalsContext } from '@/context';
 import Header from '@/pages/_common/Header';
+import { updateIncomeTotal } from '@/redux/appSlice';
 import { incomeAdornmentStyles, incomeAmountStyles } from '@/utils/muiStyles';
 import { IWalkthrough } from '@/utils/types';
 
 import styles from '../IncomeExpenditure.module.scss';
 
 export const IncomeAmount = ({ setValidInput }: IWalkthrough) => {
-  const { setAmountIn } = useContext(ExpenseTotalsContext);
-
   const {
     walkthrough: { income2 },
   } = copy;
 
   const [incomeAmount, setIncomeAmount] = useState('');
+
+  const dispatch = useDispatch();
 
   const handleFieldChange = (value: string) => {
     const sanitizedValue = value.replace(',', '');
@@ -28,11 +29,14 @@ export const IncomeAmount = ({ setValidInput }: IWalkthrough) => {
     ) {
       setIncomeAmount(Number(sanitizedValue).toLocaleString());
       setValidInput?.(true);
-      setAmountIn(Number(sanitizedValue));
+      dispatch(updateIncomeTotal(Number(sanitizedValue)));
     }
   };
   return (
-    <div data-testid="walkthrough-income-amount">
+    <div
+      data-testid="walkthrough-income-amount"
+      className={styles.walkthroughContainer}
+    >
       <Header heading={income2['heading']} subheading={income2['subheading']} />
       <p className={styles.question}>{income2['question']}</p>
       <FormControl sx={{ m: 1, width: '100%' }} className={styles.form}>

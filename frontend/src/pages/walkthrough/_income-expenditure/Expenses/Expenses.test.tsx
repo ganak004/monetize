@@ -1,48 +1,62 @@
+import { configureStore } from '@reduxjs/toolkit';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { Provider } from 'react-redux';
 
-import { ExpensesContext, ExpenseTotalsContext } from '@/context';
+import appReducer from '@/redux/appSlice';
 
 import Expenses from './Expenses';
 
 type Expense = {
   expenseName: string;
-  expenseAmount: string;
+  expenseAmount: number;
   expenseDate: string;
 };
 
 const renderExpensesComponent = (
-  expenses: Expense[] = [],
-  setExpenses = jest.fn(),
-  amountIn = 0,
-  amountOut = 0,
-  setAmountIn = jest.fn(),
-  setAmountOut = jest.fn(),
+  expenses: Expense[] = [
+    {
+      expenseName: '',
+      expenseAmount: 0,
+      expenseDate: '',
+    },
+  ],
+  incomeTotal = 0,
+  expensesTotal = 0,
   setValidInput = jest.fn()
-) =>
+) => {
+  const store = configureStore({
+    reducer: {
+      app: appReducer,
+    },
+    preloadedState: {
+      app: {
+        lightMode: true,
+        incomeSource: '',
+        incomeDate: '',
+        incomeTotal,
+        expensesTotal,
+        expenses,
+      },
+    },
+  });
+
   render(
-    <ExpenseTotalsContext.Provider
-      value={{ amountIn, amountOut, setAmountIn, setAmountOut }}
-    >
-      <ExpensesContext.Provider value={{ expenses, setExpenses }}>
-        <Expenses setValidInput={setValidInput} />
-      </ExpensesContext.Provider>
-    </ExpenseTotalsContext.Provider>
+    <Provider store={store}>
+      <Expenses setValidInput={setValidInput} />
+    </Provider>
   );
+};
 
 describe('Expenses Component', () => {
   test('renders initial expense row', () => {
-    renderExpensesComponent([
-      { expenseName: '', expenseAmount: '', expenseDate: '' },
-    ]);
+    renderExpensesComponent();
 
     expect(screen.getByTestId('expense-row-1')).toBeInTheDocument();
   });
 
   test('adds a new expense row on button click', () => {
-    renderExpensesComponent([
-      { expenseName: '', expenseAmount: '', expenseDate: '' },
-    ]);
+    renderExpensesComponent();
 
     userEvent.click(screen.getByText('+'));
 
@@ -52,9 +66,7 @@ describe('Expenses Component', () => {
   });
 
   test('updates the expense name', () => {
-    renderExpensesComponent([
-      { expenseName: '', expenseAmount: '', expenseDate: '' },
-    ]);
+    renderExpensesComponent();
     const input = screen.getByTestId('expense-name-1');
 
     fireEvent.change(input, { target: { value: 'Rent' } });
@@ -64,9 +76,7 @@ describe('Expenses Component', () => {
   });
 
   test('updates the expense amount', () => {
-    renderExpensesComponent([
-      { expenseName: '', expenseAmount: '', expenseDate: '' },
-    ]);
+    renderExpensesComponent();
     const input = screen.getByTestId('expense-amount-1');
 
     fireEvent.change(input, { target: { value: '1000' } });
@@ -76,9 +86,7 @@ describe('Expenses Component', () => {
   });
 
   test('updates the expense date', () => {
-    renderExpensesComponent([
-      { expenseName: '', expenseAmount: '', expenseDate: '' },
-    ]);
+    renderExpensesComponent();
     const input = screen.getByTestId('expense-date-1');
 
     fireEvent.change(input, { target: { value: '1st' } });
@@ -88,16 +96,15 @@ describe('Expenses Component', () => {
   });
 
   test('calculates the correct total expense amount', () => {
-    const setAmountOut = jest.fn();
+    const updateExpensesTotal = jest.fn();
     renderExpensesComponent(
       [
-        { expenseName: 'Rent', expenseAmount: '1,000', expenseDate: '1st' },
-        { expenseName: 'Groceries', expenseAmount: '200', expenseDate: '10th' },
+        { expenseName: 'Rent', expenseAmount: 1000, expenseDate: '1st' },
+        { expenseName: 'Groceries', expenseAmount: 200, expenseDate: '10th' },
       ],
-      undefined,
       0,
       0,
-      setAmountOut
+      updateExpensesTotal
     );
 
     fireEvent.change(screen.getByTestId('expense-amount-1'), {
@@ -105,7 +112,7 @@ describe('Expenses Component', () => {
     });
 
     waitFor(() => {
-      expect(setAmountOut).toHaveBeenCalledWith(1700);
+      expect(updateExpensesTotal).toHaveBeenCalledWith(1700);
     });
   });
 
@@ -113,13 +120,11 @@ describe('Expenses Component', () => {
     const setValidInput = jest.fn();
     renderExpensesComponent(
       [
-        { expenseName: 'Rent', expenseAmount: '1,000', expenseDate: '1st' },
-        { expenseName: 'Groceries', expenseAmount: '200', expenseDate: '10th' },
+        { expenseName: 'Rent', expenseAmount: 1000, expenseDate: '1st' },
+        { expenseName: 'Groceries', expenseAmount: 200, expenseDate: '10th' },
       ],
-      undefined,
       0,
       0,
-      undefined,
       setValidInput
     );
 
@@ -141,10 +146,9 @@ describe('Expenses Component', () => {
   test('renders amount in and amount out', () => {
     renderExpensesComponent(
       [
-        { expenseName: 'Rent', expenseAmount: '1,000', expenseDate: '1st' },
-        { expenseName: 'Groceries', expenseAmount: '200', expenseDate: '10th' },
+        { expenseName: 'Rent', expenseAmount: 1000, expenseDate: '1st' },
+        { expenseName: 'Groceries', expenseAmount: 200, expenseDate: '10th' },
       ],
-      undefined,
       1500,
       1200
     );
@@ -155,12 +159,13 @@ describe('Expenses Component', () => {
   });
 
   test('amount out is styled correctly based on amount in', () => {
-    const { rerender } = renderExpensesComponent(
+    const setValidInput = jest.fn();
+
+    renderExpensesComponent(
       [
-        { expenseName: 'Rent', expenseAmount: '1,000', expenseDate: '1st' },
-        { expenseName: 'Groceries', expenseAmount: '200', expenseDate: '10th' },
+        { expenseName: 'Rent', expenseAmount: 1000, expenseDate: '1st' },
+        { expenseName: 'Groceries', expenseAmount: 200, expenseDate: '10th' },
       ],
-      undefined,
       1500,
       1200
     );
@@ -168,36 +173,24 @@ describe('Expenses Component', () => {
       expect(screen.getByText(/£1,200/)).toHaveClass('inBudget');
     });
 
-    rerender(
-      <ExpenseTotalsContext.Provider
-        value={{
-          amountIn: 1000,
-          amountOut: 1200,
-          setAmountIn: jest.fn(),
-          setAmountOut: jest.fn(),
-        }}
-      >
-        <ExpensesContext.Provider
-          value={{
-            expenses: [
-              {
-                expenseName: 'Rent',
-                expenseAmount: '1,000',
-                expenseDate: '1st',
-              },
-              {
-                expenseName: 'Groceries',
-                expenseAmount: '200',
-                expenseDate: '10th',
-              },
-            ],
-            setExpenses: jest.fn(),
-          }}
-        >
-          <Expenses setValidInput={jest.fn()} />
-        </ExpensesContext.Provider>
-      </ExpenseTotalsContext.Provider>
+    renderExpensesComponent(
+      [
+        {
+          expenseName: 'Rent',
+          expenseAmount: 1000,
+          expenseDate: '1st',
+        },
+        {
+          expenseName: 'Groceries',
+          expenseAmount: 200,
+          expenseDate: '10th',
+        },
+      ],
+      1000,
+      1200,
+      setValidInput
     );
+
     waitFor(() => {
       expect(screen.getByText(/£1,200/)).toHaveClass('outOfBudget');
     });

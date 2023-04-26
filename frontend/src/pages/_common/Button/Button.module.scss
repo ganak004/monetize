@@ -18,10 +18,41 @@
 
 .buttonUnderlined {
   text-decoration: underline;
+  font-family: Palanquin, global.$fallbackFonts;
+  width: 15rem;
+  font-weight: bold;
 }
 
-.buttonBoxedPrimary {
-  // TODO: add primary
+.buttonBoxedPrimary,
+.buttonBoxedPrimaryDarkMode {
+  width: 15rem;
+  height: 2.5rem;
+  font-size: map-get(global.$fontSizes, xs);
+  font-weight: bold;
+  font-family: Maven Pro, global.$fallbackFonts;
+  color: map-get(global.$lightPalette, skyPurple);
+  border: none;
+  margin-bottom: map-get(global.$paddingMargin, xxs);
+}
+.buttonBoxedPrimary:hover {
+  color: map-get(global.$lightPalette, white);
+  background-color: transparent;
+  border: 2px solid map-get(global.$lightPalette, white);
+}
+.buttonBoxedPrimaryDarkMode {
+  background: transparent;
+  color: map-get(global.$lightPalette, white);
+  border: 2px solid map-get(global.$lightPalette, white);
+}
+.buttonBoxedPrimary:hover {
+  color: map-get(global.$lightPalette, white);
+  background-color: transparent;
+  border: 2px solid map-get(global.$lightPalette, white);
+}
+.buttonBoxedPrimaryDarkMode:hover {
+  background: white;
+  color: map-get(global.$lightPalette, skyPurple);
+  border: 2px solid map-get(global.$lightPalette, white);
 }
 
 .buttonBoxedSecondary {

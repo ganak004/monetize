@@ -22,3 +22,9 @@ export type TButtonText =
 export type TButtonType = 'normal' | 'boxed' | 'underlined';
 
 export type TButtonVariant = 'primary' | 'secondary';
+
+export interface ExpensesType {
+  expenseName: string;
+  expenseAmount: number;
+  expenseDate: string;
+}

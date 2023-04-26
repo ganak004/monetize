@@ -20,6 +20,7 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.12.1",
+    "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.0",
     "@types/node": "18.14.5",
@@ -35,6 +36,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-loader-spinner": "^5.3.4",
+    "react-redux": "^8.0.5",
     "ts-jest": "^29.1.0"
   },
   "devDependencies": {
@@ -85,5 +87,8 @@
       "<rootDir>/jest.setup.ts",
       "@testing-library/jest-dom/extend-expect"
     ]
+  },
+  "volta": {
+    "node": "20.0.0"
   }
 }

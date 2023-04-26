@@ -1,7 +1,7 @@
 import LinearProgress from '@mui/material/LinearProgress';
 
 interface IProgressBar {
-  progress: number,
+  progress: number;
 }
 
 const ProgressBar = ({ progress }: IProgressBar) => (
@@ -16,6 +16,7 @@ const ProgressBar = ({ progress }: IProgressBar) => (
         backgroundColor: '#f0f2f3',
         borderRadius: '5px',
       },
+      marginTop: '1rem',
     }}
   />
 );

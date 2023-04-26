@@ -1,3 +1,5 @@
+import { ExpensesType } from './types';
+
 export const mapArrayWithSuffixes = () =>
   Array.from({ length: 31 }, (_, i) => {
     let suffix;
@@ -15,3 +17,13 @@ export const mapArrayWithSuffixes = () =>
       suffix: suffix,
     };
   });
+
+export const sumExpenses = (expensesArr: Array<ExpensesType>) => {
+  let total = 0;
+
+  expensesArr.forEach((expense) => {
+    total += expense.expenseAmount;
+  });
+
+  return total;
+};

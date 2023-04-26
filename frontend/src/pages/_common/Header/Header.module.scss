@@ -1,8 +1,8 @@
 @use '../../../utils/global-variables' as global;
 
 .headingContainer {
-  padding: map-get(global.$paddingMargin, xs) 0
-    map-get(global.$paddingMargin, xxs);
+  // padding: map-get(global.$paddingMargin, xs) 0
+  //   map-get(global.$paddingMargin, xxs);
 }
 
 .heading {
@@ -12,12 +12,6 @@
   color: white;
   margin: 0;
   font-weight: 600;
-  // background-color: #565656;
-  // color: transparent;
-  // -webkit-background-clip: text;
-  // -moz-background-clip: text;
-  // background-clip: text;
-  // text-shadow: 0px 2px 1px rgba(255 255 255 / 100%);
 }
 
 .subheading {

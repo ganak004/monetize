@@ -9,6 +9,7 @@
 .walkthroughContainer {
   display: flex;
   flex-direction: column;
+  padding: map-get(global.$paddingMargin, xs);
 }
 
 .incomeDate,

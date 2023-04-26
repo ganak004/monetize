@@ -1,16 +1,25 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
+import { Provider } from 'react-redux';
+
+import { store } from '@/redux/store';
 
 import IncomeSource from './IncomeSource';
 
 describe('IncomeSource', () => {
   it('renders the component', () => {
-    render(<IncomeSource setValidInput={() => jest.fn()} />);
+    render(
+      <Provider store={store}>
+        <IncomeSource setValidInput={() => jest.fn()} />
+      </Provider>
+    );
     expect(screen.getByText(/source of income/i)).toBeInTheDocument();
   });
 
   it('renders the options', () => {
     const { getByRole } = render(
-      <IncomeSource setValidInput={() => jest.fn()} />
+      <Provider store={store}>
+        <IncomeSource setValidInput={() => jest.fn()} />
+      </Provider>
     );
     fireEvent.mouseDown(getByRole('button'));
 
@@ -26,7 +35,9 @@ describe('IncomeSource', () => {
   it('calls setValidInput when an option is selected', () => {
     const setValidInput = jest.fn();
     const { getByRole } = render(
-      <IncomeSource setValidInput={setValidInput} />
+      <Provider store={store}>
+        <IncomeSource setValidInput={setValidInput} />
+      </Provider>
     );
     fireEvent.mouseDown(getByRole('button'));
 

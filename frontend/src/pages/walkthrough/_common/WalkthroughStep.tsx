@@ -6,12 +6,12 @@ import copy from '@/assets/copy-en.json';
 import Button from '@/pages/_common/Button';
 import { TButtonText } from '@/utils/types';
 
-import Expenses from './_income-expenditure/Expenses/Expenses';
-import IncomeAmount from './_income-expenditure/Income/IncomeAmount';
-import IncomeDate from './_income-expenditure/Income/IncomeDate';
-import IncomeSource from './_income-expenditure/Income/IncomeSource';
-import Results from './_results/index';
-import styles from './Walkthrough.module.scss';
+import Expenses from '../_income-expenditure/Expenses/Expenses';
+import IncomeAmount from '../_income-expenditure/Income/IncomeAmount';
+import IncomeDate from '../_income-expenditure/Income/IncomeDate';
+import IncomeSource from '../_income-expenditure/Income/IncomeSource';
+import Results from '../_results/index';
+import styles from '../Walkthrough.module.scss';
 
 interface IWalkthroughStep {
   currentStep: number;

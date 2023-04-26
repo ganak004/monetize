@@ -1,16 +1,64 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import copy from '@/assets/copy-en.json';
+import Button from '@/pages/_common/Button';
+import Header from '@/pages/_common/Header';
 import Loader from '@/pages/_common/Loader';
+import type { RootState } from '@/redux/store';
+import { TButtonText } from '@/utils/types';
 
 import styles from './Results.module.scss';
 
-const Result = () => {
-  const {
-    walkthrough: { loaders },
-  } = copy;
+const {
+  walkthrough: { loaders, success },
+  buttons: { letsSave, dashboard },
+} = copy;
 
-  const [loading, setLoading] = useState(true);
+export const ResultsMessage = ({ difference }: { difference: number }) => {
+  if (difference > 0) {
+    return (
+      <div className={styles.messageContainer}>
+        <Header heading={success.headingPositive} />
+        <p>
+          {success.subheadingPositiveStart}
+          <span className={styles.difference}>
+            £{difference.toLocaleString()}
+          </span>
+          {success.subheadingPositiveEnd}
+        </p>
+        <p>{success.description}</p>
+      </div>
+    );
+  } else if (difference < 0) {
+    return (
+      <div className={styles.messageContainer}>
+        <Header heading={success.headingNegative} />
+        <p>{success.subheadingNegative}</p>
+        <p>{success.description}</p>
+      </div>
+    );
+  } else {
+    return (
+      <div className={styles.messageContainer}>
+        <Header heading={success.headingNeutral} />
+        <p>{success.subheadingNeutral}</p>
+        <p>{success.description}</p>
+      </div>
+    );
+  }
+};
+
+const Result = () => {
+  const incomeTotal = useSelector((state: RootState) => state.app.incomeTotal);
+  const expensesTotal = useSelector(
+    (state: RootState) => state.app.expensesTotal
+  );
+
+  const dispatch = useDispatch();
+
+  const [loading, setLoading] = useState(false);
+  const [difference, setDifference] = useState(incomeTotal - expensesTotal);
 
   return (
     <div className={`${styles.main} ${styles.backgroundLight}`}>
@@ -18,7 +66,25 @@ const Result = () => {
         <Loader loadingText={loaders.calculating} />
       ) : (
         <div className={styles.result}>
-          <h1>Result</h1>
+          <ResultsMessage difference={difference} />
+          <Button
+            handleClick={() => {
+              // Continue to saving
+            }}
+            buttonText={letsSave as TButtonText}
+            buttonType="boxed"
+            buttonVariant="primary"
+            disabled={false}
+          />
+          <Button
+            handleClick={() => {
+              // Route to dashboard
+            }}
+            buttonText={dashboard as TButtonText}
+            buttonType="underlined"
+            buttonVariant="primary"
+            disabled={false}
+          />
         </div>
       )}
     </div>
