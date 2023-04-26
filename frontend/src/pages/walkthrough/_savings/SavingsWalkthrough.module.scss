@@ -23,3 +23,27 @@
 .dualButtonsContainer button {
   width: auto;
 }
+
+.sliderContainer {
+  display: flex;
+  justify-content: center;
+}
+
+// targets slider value
+.sliderContainer > div > div {
+  top: 0 !important;
+  left: 0 !important;
+  transform: none !important;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: min-content;
+  width: min-content;
+}
+
+.sliderValue {
+  font-family: Maven Pro, global.$fallbackFonts;
+  font-weight: bold;
+  color: map-get(global.$lightPalette, white);
+  font-size: map-get(global.$fontSizes, m);
+}
