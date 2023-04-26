@@ -1,7 +1,7 @@
 export const incomeSourceStyles = {
   color: '#f0f2f3',
   fontFamily: 'Palanquin',
-  fontSize: '1.3em',
+  fontSize: '1.2em',
   borderBottom: '1px solid #f0f2f3',
   '&::after': {
     borderBottom: '1px solid #690303 !important',
@@ -18,12 +18,12 @@ export const incomeSourceStyles = {
 export const incomeDateStyles = {
   ...incomeSourceStyles,
   '&.MuiSelect-select': {
-    fontSize: '2em',
     padding: '0.2rem 0',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  fontSize: '2em',
 };
 export const incomeAmountStyles = {
   color: '#f0f2f3',
@@ -74,6 +74,7 @@ export const expenseNameStyles = {
 
 export const expenseDateStyles = {
   ...incomeDateStyles,
+  fontSize: '1.2em',
   width: '33%',
 };
 

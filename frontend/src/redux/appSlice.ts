@@ -10,6 +10,9 @@ export interface AppState {
   incomeDate: string;
   expensesTotal: number;
   expenses: ExpensesType[];
+  goalAmount?: number;
+  goalDate?: string;
+  goalName?: string;
 }
 
 const initialState: AppState = {
@@ -25,6 +28,9 @@ const initialState: AppState = {
       expenseDate: '',
     },
   ],
+  goalAmount: 0,
+  goalDate: '',
+  goalName: '',
 };
 
 export const appSlice = createSlice({
@@ -49,6 +55,15 @@ export const appSlice = createSlice({
     setLightMode: (state, action: PayloadAction<boolean>) => {
       state.lightMode = action.payload;
     },
+    updateGoalName: (state, action: PayloadAction<string>) => {
+      state.goalName = action.payload;
+    },
+    updateGoalAmount: (state, action: PayloadAction<number>) => {
+      state.goalAmount = action.payload;
+    },
+    updateGoalDate: (state, action: PayloadAction<string>) => {
+      state.goalDate = action.payload;
+    },
   },
 });
 
@@ -59,6 +74,9 @@ export const {
   updateExpenses,
   updateExpensesTotal,
   updateIncomeTotal,
+  updateGoalName,
+  updateGoalAmount,
+  updateGoalDate,
   setLightMode,
 } = appSlice.actions;
 

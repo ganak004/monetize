@@ -1,5 +1,4 @@
-import { motion } from 'framer-motion';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 import copy from '@/assets/copy-en.json';
@@ -11,6 +10,7 @@ import IncomeAmount from '../_income-expenditure/Income/IncomeAmount';
 import IncomeDate from '../_income-expenditure/Income/IncomeDate';
 import IncomeSource from '../_income-expenditure/Income/IncomeSource';
 import Results from '../_results/index';
+import SavingsWalkthrough from '../_savings';
 import styles from '../Walkthrough.module.scss';
 
 interface IWalkthroughStep {
@@ -22,7 +22,14 @@ export const WalkthroughStep = ({
   currentStep,
   handleNext,
 }: IWalkthroughStep) => {
-  const steps = [IncomeSource, IncomeAmount, IncomeDate, Expenses, Results];
+  const steps = [
+    IncomeSource,
+    IncomeAmount,
+    IncomeDate,
+    Expenses,
+    Results,
+    SavingsWalkthrough,
+  ];
   const [validInput, setValidInput] = useState(false);
 
   const stepIndex = currentStep - 1;
@@ -46,11 +53,10 @@ export const WalkthroughStep = ({
         key={`walkthrough-${currentStep}`}
       >
         <div className={styles.stepContainer}>
-          {currentStep <= 5 ? (
-            <StepComponent setValidInput={setValidInput} />
-          ) : (
-            <StepComponent />
-          )}
+          <StepComponent
+            setValidInput={setValidInput}
+            handleNext={handleNext}
+          />
           {currentStep < 5 && (
             <Button
               handleClick={handleNext}

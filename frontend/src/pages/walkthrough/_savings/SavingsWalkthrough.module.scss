@@ -1,0 +1,25 @@
+@use '../../../utils/global-variables' as global;
+
+.walkthroughContainer {
+  display: flex;
+  flex-direction: column;
+  padding: map-get(global.$paddingMargin, xs);
+}
+.question {
+  font-family: Palanquin, global.$fallbackFonts;
+  color: map-get(global.$lightPalette, white);
+  font-size: map-get(global.$fontSizes, m);
+  font-weight: 200;
+}
+
+.dualButtonsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 2rem;
+  padding: 0 map-get(global.$paddingMargin, m);
+}
+
+.dualButtonsContainer button {
+  width: auto;
+}

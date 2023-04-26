@@ -6,7 +6,7 @@ import Button from '@/pages/_common/Button';
 import Header from '@/pages/_common/Header';
 import Loader from '@/pages/_common/Loader';
 import type { RootState } from '@/redux/store';
-import { TButtonText } from '@/utils/types';
+import { IWalkthrough, TButtonText } from '@/utils/types';
 
 import styles from './Results.module.scss';
 
@@ -49,13 +49,11 @@ export const ResultsMessage = ({ difference }: { difference: number }) => {
   }
 };
 
-const Result = () => {
+const Result = ({ handleNext }: IWalkthrough) => {
   const incomeTotal = useSelector((state: RootState) => state.app.incomeTotal);
   const expensesTotal = useSelector(
     (state: RootState) => state.app.expensesTotal
   );
-
-  const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(false);
   const [difference, setDifference] = useState(incomeTotal - expensesTotal);
@@ -68,9 +66,7 @@ const Result = () => {
         <div className={styles.result}>
           <ResultsMessage difference={difference} />
           <Button
-            handleClick={() => {
-              // Continue to saving
-            }}
+            handleClick={handleNext as () => void}
             buttonText={letsSave as TButtonText}
             buttonType="boxed"
             buttonVariant="primary"

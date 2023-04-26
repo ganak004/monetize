@@ -6,7 +6,7 @@
 }
 
 .heading {
-  font-size: map-get(global.$fontSizes, l);
+  font-size: map-get(global.$fontSizes, xxl);
   font-family: Maven Pro, global.$fallbackFonts;
   padding-bottom: map-get(global.$paddingMargin, xs);
   color: white;

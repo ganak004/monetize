@@ -7,7 +7,7 @@ import Header from '@/pages/_common/Header';
 import { updateIncomeDate } from '@/redux/appSlice';
 import type { RootState } from '@/redux/store';
 import { incomeDates } from '@/utils/constants';
-import { incomeSourceStyles } from '@/utils/muiStyles';
+import { incomeDateStyles } from '@/utils/muiStyles';
 import { IWalkthrough } from '@/utils/types';
 
 import styles from '../IncomeExpenditure.module.scss';
@@ -42,7 +42,7 @@ export const IncomeDate = ({ setValidInput }: IWalkthrough) => {
           value={incomeDate}
           onChange={handleChange}
           label="Income Date"
-          sx={incomeSourceStyles}
+          sx={incomeDateStyles}
         >
           {incomeDates.map(({ number, suffix }) => (
             <MenuItem key={number} value={`${number}${suffix}`}>

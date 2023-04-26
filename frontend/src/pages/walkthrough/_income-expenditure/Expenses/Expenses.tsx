@@ -124,7 +124,7 @@ export const Expenses = ({ setValidInput }: IWalkthrough) => {
                 gap: '2rem',
               }}
               className={styles.expenseForm}
-              key={'expense' + i}
+              key={`expense-${i + 1}`}
               data-testid={`expense-row-${i + 1}`}
             >
               <TextField

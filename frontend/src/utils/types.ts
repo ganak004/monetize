@@ -1,5 +1,10 @@
 export interface IWalkthrough {
   setValidInput?: React.Dispatch<React.SetStateAction<boolean>>;
+  handleNext?: () => void;
+}
+
+export interface ISavingsWalkthrough {
+  handleNext: (stepNumber: number) => void;
 }
 
 export type TButtonText =
