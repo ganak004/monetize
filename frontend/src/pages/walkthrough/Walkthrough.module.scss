@@ -4,6 +4,8 @@
   padding: map-get(global.$paddingMargin, xs);
   height: 100%;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 .backgroundLight {
@@ -15,11 +17,13 @@
 }
 
 .innerContainer {
-  padding: map-get(global.$paddingMargin, xs);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  flex: 1;
+  height: 100%;
+  justify-content: center;
 }
 
 .stepContainer {

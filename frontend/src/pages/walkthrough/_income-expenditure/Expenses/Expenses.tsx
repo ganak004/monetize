@@ -5,12 +5,15 @@ import {
   TextField,
 } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { ChangeEvent, useContext, useEffect } from 'react';
+import { ChangeEvent, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import copy from '@/assets/copy-en.json';
-import { ExpensesContext, ExpenseTotalsContext } from '@/context';
 import Header from '@/pages/_common/Header';
+import { updateExpenses, updateExpensesTotal } from '@/redux/appSlice';
+import type { RootState } from '@/redux/store';
 import { incomeDates } from '@/utils/constants';
+import { sumExpenses } from '@/utils/helpers';
 import {
   expenseAmountStyles,
   expenseDateStyles,
@@ -22,30 +25,17 @@ import { IWalkthrough } from '@/utils/types';
 import styles from '../IncomeExpenditure.module.scss';
 
 export const Expenses = ({ setValidInput }: IWalkthrough) => {
-  const { amountIn, amountOut, setAmountOut } =
-    useContext(ExpenseTotalsContext);
+  const incomeTotal = useSelector((state: RootState) => state.app.incomeTotal);
+  const expensesTotal = useSelector(
+    (state: RootState) => state.app.expensesTotal
+  );
+  const expenses = useSelector((state: RootState) => state.app.expenses);
 
-  const { expenses, setExpenses } = useContext(ExpensesContext);
+  const dispatch = useDispatch();
 
   const {
     walkthrough: { expenses1 },
   } = copy;
-
-  const sumExpenses = (
-    expensesArr: Array<{
-      expenseName: string;
-      expenseAmount: string;
-      expenseDate: string;
-    }>
-  ) => {
-    let total = 0;
-
-    expensesArr.forEach((expense) => {
-      total += Number(expense.expenseAmount.replace(',', ''));
-    });
-
-    return total;
-  };
 
   const handleExpenseFieldChange = (
     e:
@@ -65,7 +55,8 @@ export const Expenses = ({ setValidInput }: IWalkthrough) => {
       ) {
         updatedExpenses[index] = {
           ...updatedExpenses[index],
-          [e.target.name]: Number(sanitizedValue).toLocaleString(),
+          // change to locale string when displating
+          [e.target.name]: Number(sanitizedValue),
         };
       }
     } else {
@@ -75,26 +66,29 @@ export const Expenses = ({ setValidInput }: IWalkthrough) => {
       };
     }
 
-    setExpenses(updatedExpenses);
-    setAmountOut(sumExpenses(updatedExpenses));
+    dispatch(updateExpenses(updatedExpenses));
+    dispatch(updateExpensesTotal(sumExpenses(updatedExpenses)));
   };
 
   const handlePlusClick = () => {
-    setExpenses((prevExpenses) => [
-      ...prevExpenses,
-      {
-        expenseName: '',
-        expenseAmount: '',
-        expenseDate: '',
-      },
-    ]);
+    const prevExpenses = [...expenses];
+    dispatch(
+      updateExpenses([
+        ...prevExpenses,
+        {
+          expenseName: '',
+          expenseAmount: 0,
+          expenseDate: '',
+        },
+      ])
+    );
   };
 
   useEffect(() => {
     const hasEmptyValues = expenses.every(
       (expense) =>
         expense.expenseName === '' ||
-        expense.expenseAmount === '' ||
+        expense.expenseAmount === 0 ||
         expense.expenseDate === ''
     );
 
@@ -104,7 +98,10 @@ export const Expenses = ({ setValidInput }: IWalkthrough) => {
   }, [expenses, setValidInput]);
 
   return (
-    <div data-testid="walkthrough-expenses">
+    <div
+      data-testid="walkthrough-expenses"
+      className={styles.walkthroughContainer}
+    >
       <Header
         heading={expenses1['heading']}
         subheading={expenses1['subheading']}
@@ -127,7 +124,7 @@ export const Expenses = ({ setValidInput }: IWalkthrough) => {
                 gap: '2rem',
               }}
               className={styles.expenseForm}
-              key={'expense' + i}
+              key={`expense-${i + 1}`}
               data-testid={`expense-row-${i + 1}`}
             >
               <TextField
@@ -146,7 +143,7 @@ export const Expenses = ({ setValidInput }: IWalkthrough) => {
                 className="expense-amount"
                 label="Expense amount"
                 variant="standard"
-                value={expenseAmount || ''}
+                value={expenseAmount.toLocaleString() || ''}
                 name="expenseAmount"
                 onChange={(e) => handleExpenseFieldChange(e, i)}
                 InputProps={{
@@ -197,16 +194,18 @@ export const Expenses = ({ setValidInput }: IWalkthrough) => {
             In:
             <span
               className={styles.inTotal}
-            >{` £${amountIn.toLocaleString()}`}</span>
+            >{` £${incomeTotal.toLocaleString()}`}</span>
           </p>
           <p className={styles.inOutText}>
             Out:
             <span
               className={
-                amountIn < amountOut ? styles.outOfBudget : styles.inBudget
+                incomeTotal < expensesTotal
+                  ? styles.outOfBudget
+                  : styles.inBudget
               }
             >
-              {` £${amountOut.toLocaleString()}`}
+              {` £${expensesTotal.toLocaleString()}`}
             </span>
           </p>
         </div>

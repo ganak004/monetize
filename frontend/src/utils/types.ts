@@ -1,5 +1,10 @@
 export interface IWalkthrough {
   setValidInput?: React.Dispatch<React.SetStateAction<boolean>>;
+  handleNext?: () => void;
+}
+
+export interface ISavingsWalkthrough {
+  handleNext: (stepNumber: number) => void;
 }
 
 export type TButtonText =
@@ -22,3 +27,9 @@ export type TButtonText =
 export type TButtonType = 'normal' | 'boxed' | 'underlined';
 
 export type TButtonVariant = 'primary' | 'secondary';
+
+export interface ExpensesType {
+  expenseName: string;
+  expenseAmount: number;
+  expenseDate: string;
+}

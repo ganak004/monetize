@@ -1,10 +1,12 @@
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import copy from '@/assets/copy-en.json';
 import Header from '@/pages/_common/Header';
+import { updateIncomeSource } from '@/redux/appSlice';
+import type { RootState } from '@/redux/store';
 import { incomeSourceStyles } from '@/utils/muiStyles';
 import { IWalkthrough } from '@/utils/types';
 
@@ -15,15 +17,22 @@ export const IncomeSource = ({ setValidInput }: IWalkthrough) => {
     walkthrough: { income1 },
   } = copy;
 
-  const [incomeSource, setIncomeSource] = useState('');
+  const incomeSource = useSelector(
+    (state: RootState) => state.app.incomeSource
+  );
+
+  const dispatch = useDispatch();
 
   const handleChange = ({ target }: SelectChangeEvent) => {
-    setIncomeSource(target.value);
+    dispatch(updateIncomeSource(target.value as string));
     setValidInput?.(true);
   };
 
   return (
-    <div data-testid="walkthrough-income-source">
+    <div
+      data-testid="walkthrough-income-source"
+      className={styles.walkthroughContainer}
+    >
       <Header heading={income1['heading']} subheading={income1['subheading']} />
       <p className={styles.question}>{income1['question']}</p>
       <FormControl

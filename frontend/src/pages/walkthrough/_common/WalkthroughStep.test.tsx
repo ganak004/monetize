@@ -1,6 +1,9 @@
 import '@testing-library/jest-dom/extend-expect';
 
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { Provider } from 'react-redux';
+
+import { store } from '@/redux/store';
 
 import { WalkthroughStep } from './WalkthroughStep';
 
@@ -9,7 +12,12 @@ describe('WalkthroughStep component', () => {
 
   const renderWalkthroughStep = (currentStep: number) => {
     render(
-      <WalkthroughStep currentStep={currentStep} handleNext={handleNextMock} />
+      <Provider store={store}>
+        <WalkthroughStep
+          currentStep={currentStep}
+          handleNext={handleNextMock}
+        />
+      </Provider>
     );
   };
 

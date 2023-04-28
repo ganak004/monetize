@@ -13,3 +13,16 @@
 .backgroundDark {
   background-color: map-get(global.$darkPalette, skyPurple);
 }
+
+.messageContainer {
+  color: map-get(global.$lightPalette, white);
+  font-family: Palanquin, global.$fallbackFonts;
+  font-size: map-get(global.$fontSizes, xs);
+}
+
+.difference {
+  font-size: map-get(global.$fontSizes, l);
+  font-weight: bold;
+  font-family: Maven Pro, global.$fallbackFonts;
+  margin: 0 map-get(global.$paddingMargin, xxs);
+}

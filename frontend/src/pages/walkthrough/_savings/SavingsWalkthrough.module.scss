@@ -1,0 +1,49 @@
+@use '../../../utils/global-variables' as global;
+
+.walkthroughContainer {
+  display: flex;
+  flex-direction: column;
+  padding: map-get(global.$paddingMargin, xs);
+}
+.question {
+  font-family: Palanquin, global.$fallbackFonts;
+  color: map-get(global.$lightPalette, white);
+  font-size: map-get(global.$fontSizes, m);
+  font-weight: 200;
+}
+
+.dualButtonsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 2rem;
+  padding: 0 map-get(global.$paddingMargin, m);
+}
+
+.dualButtonsContainer button {
+  width: auto;
+}
+
+.sliderContainer {
+  display: flex;
+  justify-content: center;
+}
+
+// targets slider value
+.sliderContainer > div > div {
+  top: 0 !important;
+  left: 0 !important;
+  transform: none !important;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: min-content;
+  width: min-content;
+}
+
+.sliderValue {
+  font-family: Maven Pro, global.$fallbackFonts;
+  font-weight: bold;
+  color: map-get(global.$lightPalette, white);
+  font-size: map-get(global.$fontSizes, m);
+}

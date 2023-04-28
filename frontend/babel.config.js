@@ -4,5 +4,8 @@ module.exports = {
     'next/babel',
     '@babel/preset-typescript',
   ],
-  plugins: [['@babel/plugin-proposal-decorators', { legacy: true }]],
+  plugins: [
+    ['@babel/plugin-proposal-decorators', { legacy: true }],
+    '@babel/plugin-proposal-private-methods',
+  ],
 };

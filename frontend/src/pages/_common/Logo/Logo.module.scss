@@ -3,7 +3,6 @@
 .logo {
   font-size: map-get(global.$fontSizes, m);
   font-family: 'Kaushan Script', global.$fallbackFonts;
-  padding-bottom: map-get(global.$paddingMargin, xs);
   background-color: #565656;
   color: transparent;
   -webkit-background-clip: text;
