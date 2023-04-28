@@ -34,7 +34,7 @@ const GoalType = ({ handleNext }: ISavingsWalkthrough) => {
   };
 
   return (
-    <div className={styles.walkthroughContainer}>
+    <div className={styles.walkthroughContainer} data-testid="savings-type">
       <p className={styles.question}>{savings2.question}</p>
       <FormControl
         variant="standard"
@@ -57,7 +57,7 @@ const GoalType = ({ handleNext }: ISavingsWalkthrough) => {
         </Select>
       </FormControl>
       <Button
-        handleClick={() => handleNext(4)}
+        handleClick={() => handleNext(3)}
         buttonText={next as TButtonText}
         buttonType="underlined"
         disabled={!validInput}

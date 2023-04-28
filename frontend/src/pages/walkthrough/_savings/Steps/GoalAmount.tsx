@@ -1,8 +1,9 @@
 import { FormControl, TextField } from '@mui/material';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import copy from '@/assets/copy-en.json';
+import { SavingsGoalContext } from '@/context';
 import Button from '@/pages/_common/Button';
 import { updateGoalAmount } from '@/redux/appSlice';
 import { incomeAmountStyles } from '@/utils/muiStyles';
@@ -18,6 +19,8 @@ const GoalAmount = ({ handleNext }: ISavingsWalkthrough) => {
 
   const [goalAmount, setGoalAmount] = useState('');
   const [validInput, setValidInput] = useState(false);
+
+  const { hasSavingsGoal } = useContext(SavingsGoalContext);
 
   const dispatch = useDispatch();
 
@@ -36,8 +39,12 @@ const GoalAmount = ({ handleNext }: ISavingsWalkthrough) => {
   };
 
   return (
-    <div className={styles.walkthroughContainer}>
-      <p className={styles.question}>{savings3.question}</p>
+    <div className={styles.walkthroughContainer} data-testid="savings-amount">
+      <p className={styles.question}>
+        {hasSavingsGoal
+          ? savings3.questionWithGoal
+          : savings3.questionWithoutGoal}
+      </p>
       <FormControl sx={{ m: 1, width: '100%' }} className={styles.form}>
         <TextField
           id="goal-amount"
@@ -52,6 +59,7 @@ const GoalAmount = ({ handleNext }: ISavingsWalkthrough) => {
           }}
         />
       </FormControl>
+      {/** if no savings goal do they need to set a date? */}
       <Button
         handleClick={() => handleNext(4)}
         buttonText={next as TButtonText}

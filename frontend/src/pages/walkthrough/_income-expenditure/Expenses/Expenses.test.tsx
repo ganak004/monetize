@@ -37,6 +37,9 @@ const renderExpensesComponent = (
         incomeTotal,
         expensesTotal,
         expenses,
+        goalAmount: 0,
+        goalDate: '12-01-2021',
+        goalName: 'Holiday',
       },
     },
   });

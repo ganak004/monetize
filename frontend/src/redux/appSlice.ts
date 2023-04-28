@@ -10,9 +10,9 @@ export interface AppState {
   incomeDate: string;
   expensesTotal: number;
   expenses: ExpensesType[];
-  goalAmount?: number;
-  goalDate?: string;
-  goalName?: string;
+  goalAmount: number;
+  goalDate: string;
+  goalName: string;
 }
 
 const initialState: AppState = {

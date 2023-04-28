@@ -11,4 +11,4 @@ const SavingsGoalContext = createContext<SavingsGoalType>({
   setHasSavingsGoal: () => {},
 });
 
-export { SavingsGoalContext };
+export { SavingsGoalContext, type SavingsGoalType };

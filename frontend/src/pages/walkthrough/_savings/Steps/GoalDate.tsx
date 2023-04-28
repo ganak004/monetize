@@ -7,7 +7,7 @@ import copy from '@/assets/copy-en.json';
 import Button from '@/pages/_common/Button';
 import { updateGoalDate } from '@/redux/appSlice';
 import { RootState } from '@/redux/store';
-import { incomeDateStyles } from '@/utils/muiStyles';
+import { formatDate } from '@/utils/helpers';
 import { ISavingsWalkthrough, TButtonText } from '@/utils/types';
 
 import styles from '../SavingsWalkthrough.module.scss';
@@ -25,7 +25,7 @@ const GoalDate = ({ handleNext }: ISavingsWalkthrough) => {
   const goalDate = useSelector((state: RootState) => state.app.goalDate);
 
   return (
-    <div className={styles.walkthroughContainer}>
+    <div className={styles.walkthroughContainer} data-testid="savings-date">
       <p className={styles.question}>{savings4.question}</p>
       <FormControl
         variant="standard"
@@ -37,10 +37,13 @@ const GoalDate = ({ handleNext }: ISavingsWalkthrough) => {
           data-testid="goal-date"
           value={goalDate}
           onChange={(newValue) => {
-            dispatch(updateGoalDate(newValue as string));
-            setValidInput?.(true);
+            if (newValue) {
+              const date = formatDate(newValue.toString());
+              dispatch(updateGoalDate(date));
+              setValidInput?.(true);
+            }
           }}
-          format="DD-MM-YYYY"
+          format="DD/MM/YYYY"
           sx={{ margin: '0 0 2rem 0' }}
         />
       </FormControl>

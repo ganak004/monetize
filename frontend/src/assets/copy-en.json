@@ -158,16 +158,19 @@
       "options": ["Holiday", "Car", "House", "Wedding", "Other"]
     },
     "savings3": {
-      "question": "How much do you need to save for this goal?"
+      "questionWithGoal": "How much do you need to save for this goal?",
+      "questionWithoutGoal": "How much would you like to save each month?"
     },
     "savings4": {
       "question": "When do you want to achieve this goal by?"
     },
     "savings5": {
       "question": "You have £X left over each month. How much of this would you like to save?",
-      "goalPositive": "Nice! You'll reach your goal X days before your target date.",
+      "goalPositiveStart": "Nice! You'll reach your goal ",
+      "goalPositiveEnd": " days before your target date.",
       "goalNeutral": "Congratulations! You'll reach your goal on your target date.",
-      "goalNegative": "Great work! You'll reach your goal X days after your target date. You can keep your target date as is, or we can adjust it for you."
+      "goalNegativeStart": "You'll reach your goal ",
+      "goalNegativeEnd": " days after your target date. You can keep your target date as is, or we can adjust it for you."
     }
   },
   "dashboard": {
