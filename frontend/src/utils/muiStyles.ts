@@ -86,3 +86,24 @@ export const expenseAmountStyles = {
   },
   width: '33%',
 };
+
+export const goalNameStyles = {
+  ...incomeSourceStyles,
+  '& input': {
+    color: 'white',
+    textAlign: 'center',
+    fontFamily: 'Palanquin',
+    fontSize: '1.2em',
+  },
+  '& button': {
+    color: 'white',
+  },
+  margin: '0 1rem 2rem 1rem',
+  color: 'white',
+  '& fieldset': {
+    border: 'none',
+  },
+  '& label': {
+    visibility: 'hidden',
+  },
+};

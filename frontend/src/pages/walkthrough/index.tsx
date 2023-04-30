@@ -9,7 +9,7 @@ import { WalkthroughStep } from './_common/WalkthroughStep';
 import styles from './Walkthrough.module.scss';
 
 const Walkthrough = () => {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(6);
 
   const lightMode = useSelector((state: RootState) => state.app.lightMode);
 

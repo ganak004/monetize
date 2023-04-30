@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { createContext } from 'react';
 
-interface SavingsGoalType {
+interface SavingsGoal {
   hasSavingsGoal: boolean;
   setHasSavingsGoal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SavingsGoalContext = createContext<SavingsGoalType>({
+const SavingsGoalContext = createContext<SavingsGoal>({
   hasSavingsGoal: false,
   setHasSavingsGoal: () => {},
 });
 
-export { SavingsGoalContext, type SavingsGoalType };
+export { type SavingsGoal, SavingsGoalContext };

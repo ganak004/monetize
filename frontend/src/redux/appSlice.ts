@@ -67,7 +67,6 @@ export const appSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const {
   updateIncomeSource,
   updateIncomeDate,

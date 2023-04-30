@@ -155,7 +155,7 @@
     },
     "savings2": {
       "question": "What are you saving for?",
-      "options": ["Holiday", "Car", "House", "Wedding", "Other"]
+      "options": ["Holiday", "Car", "House", "Wedding", "Emergency Fund"]
     },
     "savings3": {
       "questionWithGoal": "How much do you need to save for this goal?",

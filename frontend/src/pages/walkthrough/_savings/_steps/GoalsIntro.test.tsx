@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { SavingsGoalContext } from '@/context/index';
 import { store } from '@/redux/store';
 
-import Goals from './Goals';
+import Goals from './GoalsIntro';
 
 // Mock the SavingsGoalContext
 const mockSetHasSavingsGoal = jest.fn();

@@ -3,12 +3,12 @@ import { useMemo, useState } from 'react';
 
 import { SavingsGoalContext } from '@/context/index';
 
+import GoalAmount from '../_steps/GoalAmount';
+import GoalDate from '../_steps/GoalDate';
+import GoalName from '../_steps/GoalName';
+import GoalResult from '../_steps/GoalResult';
+import Goals from '../_steps/GoalsIntro';
 import styles from '../SavingsWalkthrough.module.scss';
-import GoalAmount from '../Steps/GoalAmount';
-import GoalDate from '../Steps/GoalDate';
-import GoalResult from '../Steps/GoalResult';
-import Goals from '../Steps/Goals';
-import GoalType from '../Steps/GoalType';
 
 interface ISavingsWalkthroughStep {
   currentStep: number;
@@ -19,7 +19,7 @@ export const SavingsWalkthroughStep = ({
   currentStep,
   handleNext,
 }: ISavingsWalkthroughStep) => {
-  const steps = [Goals, GoalType, GoalAmount, GoalDate, GoalResult];
+  const steps = [Goals, GoalName, GoalAmount, GoalDate, GoalResult];
 
   const stepIndex = currentStep - 1;
   const StepComponent = steps[stepIndex] || Goals;

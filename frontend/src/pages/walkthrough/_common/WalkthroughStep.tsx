@@ -5,10 +5,10 @@ import copy from '@/assets/copy-en.json';
 import Button from '@/pages/_common/Button';
 import { TButtonText } from '@/utils/types';
 
-import Expenses from '../_income-expenditure/Expenses/Expenses';
-import IncomeAmount from '../_income-expenditure/Income/IncomeAmount';
-import IncomeDate from '../_income-expenditure/Income/IncomeDate';
-import IncomeSource from '../_income-expenditure/Income/IncomeSource';
+import Expenses from '../_income-expenditure/_expenses/Expenses';
+import IncomeAmount from '../_income-expenditure/_income/IncomeAmount';
+import IncomeDate from '../_income-expenditure/_income/IncomeDate';
+import IncomeSource from '../_income-expenditure/_income/IncomeSource';
 import Results from '../_results/index';
 import SavingsWalkthrough from '../_savings';
 import styles from '../Walkthrough.module.scss';

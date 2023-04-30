@@ -1,27 +1,27 @@
-import { fireEvent, render, screen, within } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 
 import { store } from '@/redux/store';
 
-import GoalType from './GoalType';
+import GoalName from './GoalName';
 
 const mockHandleNext = jest.fn();
 
-const renderGoalTypeComponent = () =>
+const renderGoalNameComponent = () =>
   render(
     <Provider store={store}>
-      <GoalType handleNext={mockHandleNext} />
+      <GoalName handleNext={mockHandleNext} />
     </Provider>
   );
 
-describe('GoalType Component', () => {
+describe('GoalName Component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   test('renders the component', () => {
-    renderGoalTypeComponent();
+    renderGoalNameComponent();
 
     expect(screen.getByTestId('savings-type')).toBeInTheDocument();
     expect(screen.getByText(/What are you saving for?/)).toBeInTheDocument();
@@ -32,9 +32,9 @@ describe('GoalType Component', () => {
   //TODO: fix this test
 
   test.skip('updates the goal type when an option is selected', async () => {
-    renderGoalTypeComponent();
+    renderGoalNameComponent();
 
-    const select = screen.getByTestId('goal-type');
+    const select = screen.getByTestId('goal-name');
     expect(select).toBeInTheDocument();
 
     fireEvent.mouseDown(select);
@@ -52,10 +52,10 @@ describe('GoalType Component', () => {
   });
 
   test.skip('calls handleNext with the correct argument when "Next" button is clicked', async () => {
-    renderGoalTypeComponent();
+    renderGoalNameComponent();
 
-    const goalTypeSelect = screen.getByTestId('goal-type');
-    userEvent.click(goalTypeSelect);
+    const GoalNameSelect = screen.getByTestId('goal-name');
+    userEvent.click(GoalNameSelect);
 
     const optionToSelect = await screen.findByText('Holiday');
     userEvent.click(optionToSelect);
@@ -67,7 +67,7 @@ describe('GoalType Component', () => {
   });
 
   test('disables "Next" button when no goal type is selected', () => {
-    renderGoalTypeComponent();
+    renderGoalNameComponent();
 
     const nextButton = screen.getByRole('button', { name: 'Next' });
     expect(nextButton).toBeDisabled();
