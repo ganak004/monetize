@@ -101,13 +101,6 @@ const GoalResult = () => {
       </div>
       {result}
       <Button
-        handleClick={() => {}}
-        buttonText={goBack as TButtonText}
-        buttonType="boxed"
-        buttonVariant="secondary"
-        disabled={false}
-      />
-      <Button
         handleClick={() => {
           // Route to dashboard
         }}
