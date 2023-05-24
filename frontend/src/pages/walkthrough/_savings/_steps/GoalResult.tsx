@@ -34,7 +34,7 @@ const GoalResult = () => {
         goalNeutral,
       },
     },
-    buttons: { saveAndContinue },
+    buttons: { saveAndContinue, goBack },
   } = copy;
 
   const [goalReached, days] = willMeetSavingsGoal(
@@ -100,6 +100,13 @@ const GoalResult = () => {
         </CircularSliderWithChildren>
       </div>
       {result}
+      <Button
+        handleClick={() => {}}
+        buttonText={goBack as TButtonText}
+        buttonType="boxed"
+        buttonVariant="secondary"
+        disabled={false}
+      />
       <Button
         handleClick={() => {
           // Route to dashboard

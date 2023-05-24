@@ -24,7 +24,8 @@
 }
 
 .buttonBoxedPrimary,
-.buttonBoxedPrimaryDarkMode {
+.buttonBoxedPrimaryDarkMode,
+.buttonBoxedSecondary {
   width: 15rem;
   height: 2.5rem;
   font-size: map-get(global.$fontSizes, xs);
@@ -56,7 +57,14 @@
 }
 
 .buttonBoxedSecondary {
-  // TODO: add secondary
+  color: map-get(global.$lightPalette, white);
+  background-color: transparent;
+  border: 2px solid map-get(global.$lightPalette, white);
+}
+.buttonBoxedSecondary:hover {
+  background: white;
+  color: map-get(global.$lightPalette, skyPurple);
+  border: 2px solid map-get(global.$lightPalette, white);
 }
 
 .buttonUnderlined:disabled,

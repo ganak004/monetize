@@ -76,7 +76,8 @@
     "no": "No",
     "saveAndContinue": "Save and continue",
     "viewAll": "View all",
-    "addAnother": "Add another"
+    "addAnother": "Add another",
+    "goBack": "Go back"
   },
   "walkthrough": {
     "income1": {
